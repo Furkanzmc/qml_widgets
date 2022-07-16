@@ -53,27 +53,5 @@ int main(int argc, char* argv[])
       Qt::QueuedConnection);
     engine.load(url);
 
-    // {
-    //     QWidget* window = new QWidget{};
-    //     QPushButton* button1 = new QPushButton{ "One" };
-    //     QPushButton* button2 = new QPushButton{ "Two" };
-    //     QPushButton* button3 = new QPushButton{ "Three" };
-    //     QPushButton* button4 = new QPushButton{ "Four" };
-    //     QPushButton* button5 = new QPushButton{ "Five" };
-
-    //     auto* vlayout = new QVBoxLayout{};
-    //     auto* hlayout = new QHBoxLayout{};
-    //     vlayout->addWidget(button1);
-    //     vlayout->addWidget(button2);
-
-    //     hlayout->addWidget(button3);
-    //     hlayout->addWidget(button4);
-    //     hlayout->addWidget(button5);
-
-    //     window->setLayout(vlayout);
-    //     vlayout->addLayout(hlayout);
-    //     window->show();
-    // }
-
     return app.exec();
 }

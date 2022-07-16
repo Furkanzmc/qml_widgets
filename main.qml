@@ -2,7 +2,7 @@ import Qml.Widgets
 
 Widget {
     visible: true
-    windowTitle: "Hello QML Widgets"
+    windowTitle: "QML QWidget Gallery"
 
     HBoxLayout {
         PushButton {
@@ -45,7 +45,7 @@ Widget {
         GroupBox {
             title: "Group A"
 
-            VBoxLayout {
+            FormLayout {
                 PushButton {
                     text: "One"
                     onClicked: {
@@ -64,6 +64,29 @@ Widget {
                     text: "Three"
                     onClicked: {
                         console.log("[main.qml::14::onClicked]", text)
+                    }
+                }
+
+                HBoxLayout {
+                    PushButton {
+                        text: "Four"
+                        onClicked: {
+                            console.log("[main.qml::14::onClicked]", text)
+                        }
+                    }
+
+                    PushButton {
+                        text: "Five"
+                        onClicked: {
+                            console.log("[main.qml::14::onClicked]", text)
+                        }
+                    }
+
+                    PushButton {
+                        text: "Six"
+                        onClicked: {
+                            console.log("[main.qml::14::onClicked]", text)
+                        }
                     }
                 }
             }
