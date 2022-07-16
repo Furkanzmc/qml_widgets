@@ -9,10 +9,11 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
 {
     auto* layout{ static_cast<Layout*>(prop->object) };
     assert(layout);
-    if (layout->parent() && !layout->parentWidget()) {
-        if (qobject_cast<QWidget*>(layout->parent())) {
-            qobject_cast<QWidget*>(layout->parent())->setLayout(layout);
-        }
+    if (layout->count() == 0) {
+        // NOTE: If there's a parent and the parent was not passed in in the
+        // ctor, widget creation fails and a warning log is out put from
+        // QLayout::parentWidget()
+        layout->setParent(nullptr);
     }
 
     auto* widget{ qobject_cast<QWidget*>(o) };

@@ -12,29 +12,34 @@ Widget {
             }
         }
 
-        PushButton {
-            text: "ColorDialog"
-            toolTip: "Show color dialog using QColorDialog"
-            onClicked: {
-                cd.open()
+        VBoxLayout {
+            PushButton {
+                text: "ColorDialog"
+                toolTip: "Show color dialog using QColorDialog"
+                onClicked: {
+                    cd.open()
+                }
+            }
+
+            Label {
+                id: colorLabel
+                text: "Pick Color"
             }
         }
 
-        Label {
-            id: colorLabel
-        }
+        VBoxLayout {
+            CheckBox {
+                text: "Check me out"
+                toolTip: "Show color dialog using QColorDialog"
+            }
 
-        CheckBox {
-            text: "Check me out"
-            toolTip: "Show color dialog using QColorDialog"
-        }
+            RadioButton {
+                text: "Call me Misty."
+            }
 
-        RadioButton {
-            text: "Call me Misty."
-        }
-
-        RadioButton {
-            text: "Or don't"
+            RadioButton {
+                text: "Or don't"
+            }
         }
 
         GroupBox {
