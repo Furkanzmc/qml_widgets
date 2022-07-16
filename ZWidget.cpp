@@ -13,7 +13,8 @@ QQmlListProperty<QObject> ZWidget::data()
     return QQmlListProperty<QObject>(
       this,
       nullptr,
-      [](QQmlListProperty<QObject>* prop, QObject* o) -> void {
+      // Append
+      [](QQmlListProperty<QObject>* prop, QObject* object) -> void {
           auto* parent = static_cast<ZWidget*>(prop->object);
           assert(parent);
           assert(!qobject_cast<ZWidget*>(o));
@@ -22,11 +23,13 @@ QQmlListProperty<QObject> ZWidget::data()
               parent->setLayout(layout);
           }
       },
+      // Count
       [](QQmlListProperty<QObject>* prop) -> qsizetype {
           auto* parent = static_cast<ZWidget*>(prop->object);
           assert(parent);
           return parent->layout() ? 1 : 0;
       },
+      // At
       [](QQmlListProperty<QObject>* prop, qsizetype i) -> QObject* {
           auto* parent = static_cast<ZWidget*>(prop->object);
           assert(parent);
@@ -36,6 +39,7 @@ QQmlListProperty<QObject> ZWidget::data()
 
           return parent->layout()->itemAt(i)->widget();
       },
+      // Clear
       [](QQmlListProperty<QObject>* prop) -> void {});
 }
 
