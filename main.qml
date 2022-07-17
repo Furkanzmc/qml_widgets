@@ -25,20 +25,47 @@ Widget {
                 id: colorLabel
                 text: "Pick Color"
             }
+
+            TextEdit {
+
+            }
+
+            HBoxLayout {
+                Label {
+                    text: "First Name"
+                }
+
+                LineEdit {
+
+                }
+            }
         }
 
-        VBoxLayout {
+        GridLayout {
             CheckBox {
                 text: "Check me out"
                 toolTip: "Show color dialog using QColorDialog"
+                Layout.row: 0
+                Layout.column: 0
             }
 
             RadioButton {
                 text: "Call me Misty."
+                Layout.row: 0
+                Layout.column: 1
             }
 
             RadioButton {
                 text: "Or don't"
+                Layout.row: 0
+                Layout.column: 2
+            }
+
+            CheckBox {
+                text: "Check me out twice"
+                toolTip: "Show color dialog using QColorDialog"
+                Layout.row: 1
+                Layout.column: 0
             }
         }
 

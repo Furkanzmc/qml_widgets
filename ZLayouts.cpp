@@ -21,17 +21,31 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
         if constexpr (std::is_same_v<Layout, QFormLayout>) {
             layout->addRow(widget);
         }
+        else if constexpr (std::is_same_v<Layout, QGridLayout>) {
+            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
+              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+            assert(layoutAtt);
+            layout->addWidget(widget, layoutAtt->row(), layoutAtt->column());
+        }
         else {
             layout->addWidget(widget);
         }
     }
     else {
         auto* childLayout{ qobject_cast<QLayout*>(o) };
-        if constexpr (!std::is_same_v<Layout, QFormLayout>) {
-            layout->addLayout(childLayout);
+        if constexpr (std::is_same_v<Layout, QGridLayout>) {
+            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
+              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+            assert(layoutAtt);
+            layout->addLayout(
+              childLayout, layoutAtt->row(), layoutAtt->column());
         }
         else if constexpr (std::is_same_v<Layout, QFormLayout>) {
             layout->addRow(childLayout);
+        }
+        else {
+
+            layout->addLayout(childLayout);
         }
     }
 }
@@ -104,4 +118,196 @@ QQmlListProperty<QObject> ZFormLayout::data()
                                      dataCount<QFormLayout>,
                                      dataAt<QFormLayout>,
                                      dataClear<QFormLayout>);
+}
+
+ZGridLayout::ZGridLayout(QWidget* parent)
+  : QGridLayout{ parent }
+{
+}
+
+QQmlListProperty<QObject> ZGridLayout::data()
+{
+    return QQmlListProperty<QObject>(this,
+                                     nullptr,
+                                     dataAppend<QGridLayout>,
+                                     dataCount<QGridLayout>,
+                                     dataAt<QGridLayout>,
+                                     dataClear<QGridLayout>);
+}
+
+ZLayoutAttached::ZLayoutAttached(QObject* parent)
+  : QObject{ parent }
+{
+}
+
+ZLayoutAttached* ZLayoutAttached::qmlAttachedProperties(QObject* object)
+{
+    return new ZLayoutAttached(object);
+}
+
+int ZLayoutAttached::row() const
+{
+    return m_row;
+}
+
+void ZLayoutAttached::setRow(int value)
+{
+    if (m_row == value) {
+        return;
+    }
+
+    m_row = value;
+    emit rowChanged(QPrivateSignal{});
+}
+
+int ZLayoutAttached::column() const
+{
+    return m_column;
+}
+
+void ZLayoutAttached::setColumn(int value)
+{
+    if (m_column == value) {
+        return;
+    }
+
+    m_column = value;
+    emit columnChanged(QPrivateSignal{});
+}
+
+int ZLayoutAttached::rowSpan() const
+{
+    return m_rowSpan;
+}
+void ZLayoutAttached::setRowSpan(int value)
+{
+    if (m_rowSpan == value) {
+        return;
+    }
+
+    m_rowSpan = value;
+    emit rowSpanChanged(QPrivateSignal{});
+}
+
+int ZLayoutAttached::columnSpan() const
+{
+    return m_columnSpan;
+}
+
+void ZLayoutAttached::setColumnSpan(int value)
+{
+    if (m_columnSpan == value) {
+        return;
+    }
+
+    m_columnSpan = value;
+    emit columnSpanChanged(QPrivateSignal{});
+}
+
+Qt::Alignment ZLayoutAttached::alignment() const
+{
+    return m_alignment;
+}
+
+void ZLayoutAttached::setAlignment(Qt::Alignment value)
+{
+    if (m_alignment == value) {
+        return;
+    }
+
+    m_alignment = value;
+    emit alignmentChanged(QPrivateSignal{});
+}
+
+qreal ZLayoutAttached::margins() const
+{
+    return m_margins;
+}
+
+void ZLayoutAttached::setMargins(qreal value)
+{
+    if (m_margins == value) {
+        return;
+    }
+
+    m_margins = value;
+    emit marginsChanged(QPrivateSignal{});
+}
+
+qreal ZLayoutAttached::leftMargin() const
+{
+    return m_leftMargin;
+}
+
+void ZLayoutAttached::setLeftMargin(qreal value)
+{
+    if (m_leftMargin == value) {
+        return;
+    }
+    m_leftMargin = value;
+    emit leftMarginChanged(QPrivateSignal{});
+}
+
+void ZLayoutAttached::resetLeftMargin()
+{
+    setLeftMargin(0);
+}
+
+qreal ZLayoutAttached::topMargin() const
+{
+    return m_topMargin;
+}
+void ZLayoutAttached::setTopMargin(qreal value)
+{
+    if (m_topMargin == value) {
+        return;
+    }
+
+    m_topMargin = value;
+    emit topMarginChanged(QPrivateSignal{});
+}
+
+void ZLayoutAttached::resetTopMargin()
+{
+    setTopMargin(0);
+}
+
+qreal ZLayoutAttached::rightMargin() const
+{
+    return m_rightMargin;
+}
+
+void ZLayoutAttached::setRightMargin(qreal value)
+{
+    if (m_rightMargin == value) {
+        return;
+    }
+
+    m_rightMargin = value;
+    emit rightMarginChanged(QPrivateSignal{});
+}
+
+void ZLayoutAttached::resetRightMargin()
+{
+    setRightMargin(0);
+}
+
+qreal ZLayoutAttached::bottomMargin() const
+{
+    return m_bottomMargin;
+}
+
+void ZLayoutAttached::setBottomMargin(qreal value)
+{
+    if (m_bottomMargin == value) {
+        return;
+    }
+
+    m_bottomMargin = value;
+    emit bottomMarginChanged(QPrivateSignal{});
+}
+
+void ZLayoutAttached::resetBottomMargin()
+{
+    setBottomMargin(0);
 }
