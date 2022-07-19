@@ -38,7 +38,10 @@ int main(int argc, char* argv[])
     qmlRegisterType<ZFormLayout>("Qml.Widgets", 1, 0, "FormLayout");
     qmlRegisterType<ZGroupBox>("Qml.Widgets", 1, 0, "GroupBox");
     qmlRegisterType<ZGridLayout>("Qml.Widgets", 1, 0, "GridLayout");
-    qmlRegisterType<ZLayoutAttached>("Qml.Widgets", 1, 0, "Layout");
+    qmlRegisterType<ZStackedLayout>("Qml.Widgets", 1, 0, "StackLayout");
+    qmlRegisterType<ZStackedWidget>("Qml.Widgets", 1, 0, "StackWidget");
+    qmlRegisterUncreatableType<ZLayoutAttached>(
+      "Qml.Widgets", 1, 0, "Layout", "Cannot create from QML.");
 
     qmlRegisterType<QLabel>("Qml.Widgets", 1, 0, "Label");
     qmlRegisterType<QPushButton>("Qml.Widgets", 1, 0, "PushButton");

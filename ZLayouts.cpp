@@ -18,10 +18,10 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
 
     auto* widget{ qobject_cast<QWidget*>(o) };
     if (widget) {
-        if constexpr (std::is_same_v<Layout, QFormLayout>) {
+        if constexpr (std::is_same_v<Layout, ZFormLayout>) {
             layout->addRow(widget);
         }
-        else if constexpr (std::is_same_v<Layout, QGridLayout>) {
+        else if constexpr (std::is_same_v<Layout, ZGridLayout>) {
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
               qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             assert(layoutAtt);
@@ -33,19 +33,22 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
     }
     else {
         auto* childLayout{ qobject_cast<QLayout*>(o) };
-        if constexpr (std::is_same_v<Layout, QGridLayout>) {
+        if constexpr (std::is_same_v<Layout, ZGridLayout>) {
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
               qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             assert(layoutAtt);
             layout->addLayout(
               childLayout, layoutAtt->row(), layoutAtt->column());
         }
-        else if constexpr (std::is_same_v<Layout, QFormLayout>) {
+        else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
             layout->addRow(childLayout);
         }
-        else {
-
+        else if constexpr (!std::is_same_v<Layout, ZStackedLayout> &&
+                           !std::is_same_v<Layout, ZStackedWidget>) {
             layout->addLayout(childLayout);
+        }
+        else {
+            assert(false);
         }
     }
 }
@@ -63,7 +66,12 @@ QObject* dataAt(QQmlListProperty<QObject>* prop, qsizetype i)
 {
     auto* layout{ static_cast<Layout*>(prop->object) };
     assert(layout);
-    return layout->itemAt(i)->widget();
+    if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
+        return layout->widget(i);
+    }
+    else {
+        return layout->itemAt(i)->widget();
+    }
 }
 
 template<class Layout>
@@ -114,10 +122,10 @@ QQmlListProperty<QObject> ZFormLayout::data()
 {
     return QQmlListProperty<QObject>(this,
                                      nullptr,
-                                     dataAppend<QFormLayout>,
-                                     dataCount<QFormLayout>,
-                                     dataAt<QFormLayout>,
-                                     dataClear<QFormLayout>);
+                                     dataAppend<ZFormLayout>,
+                                     dataCount<ZFormLayout>,
+                                     dataAt<ZFormLayout>,
+                                     dataClear<ZFormLayout>);
 }
 
 ZGridLayout::ZGridLayout(QWidget* parent)
@@ -129,10 +137,40 @@ QQmlListProperty<QObject> ZGridLayout::data()
 {
     return QQmlListProperty<QObject>(this,
                                      nullptr,
-                                     dataAppend<QGridLayout>,
-                                     dataCount<QGridLayout>,
-                                     dataAt<QGridLayout>,
-                                     dataClear<QGridLayout>);
+                                     dataAppend<ZGridLayout>,
+                                     dataCount<ZGridLayout>,
+                                     dataAt<ZGridLayout>,
+                                     dataClear<ZGridLayout>);
+}
+
+ZStackedLayout::ZStackedLayout(QWidget* parent)
+  : QStackedLayout{ parent }
+{
+}
+
+QQmlListProperty<QObject> ZStackedLayout::data()
+{
+    return QQmlListProperty<QObject>(this,
+                                     nullptr,
+                                     dataAppend<ZStackedLayout>,
+                                     dataCount<ZStackedLayout>,
+                                     dataAt<ZStackedLayout>,
+                                     dataClear<ZStackedLayout>);
+}
+
+ZStackedWidget::ZStackedWidget(QWidget* parent)
+  : QStackedWidget{ parent }
+{
+}
+
+QQmlListProperty<QObject> ZStackedWidget::data()
+{
+    return QQmlListProperty<QObject>(this,
+                                     nullptr,
+                                     dataAppend<ZStackedWidget>,
+                                     dataCount<ZStackedWidget>,
+                                     dataAt<ZStackedWidget>,
+                                     dataClear<ZStackedWidget>);
 }
 
 ZLayoutAttached::ZLayoutAttached(QObject* parent)

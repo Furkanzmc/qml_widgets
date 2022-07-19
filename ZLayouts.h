@@ -5,6 +5,8 @@
 #include <QHBoxLayout>
 #include <QFormLayout>
 #include <QGridLayout>
+#include <QStackedLayout>
+#include <QStackedWidget>
 
 #include <QWidget>
 #include <qqml.h>
@@ -14,7 +16,7 @@ class ZVBoxLayout : public QVBoxLayout {
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(ZVBoxLayout)
+    QML_NAMED_ELEMENT(VBoxLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
     Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
@@ -30,7 +32,7 @@ class ZHBoxLayout : public QHBoxLayout {
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(ZHBoxLayout)
+    QML_NAMED_ELEMENT(HBoxLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
     Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
@@ -46,7 +48,7 @@ class ZFormLayout : public QFormLayout {
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(ZHBoxLayout)
+    QML_NAMED_ELEMENT(FormLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
     Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
@@ -62,13 +64,45 @@ class ZGridLayout : public QGridLayout {
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(ZHBoxLayout)
+    QML_NAMED_ELEMENT(GridLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
     Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
 
 public:
     explicit ZGridLayout(QWidget* parent = nullptr);
+
+    QQmlListProperty<QObject> data();
+};
+
+class ZStackedLayout : public QStackedLayout {
+    Q_OBJECT
+
+    Q_CLASSINFO("DefaultProperty", "data")
+    Q_CLASSINFO("ParentProperty", "parent")
+    QML_NAMED_ELEMENT(StackedLayout)
+
+    Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
+    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+
+public:
+    explicit ZStackedLayout(QWidget* parent = nullptr);
+
+    QQmlListProperty<QObject> data();
+};
+
+class ZStackedWidget : public QStackedWidget {
+    Q_OBJECT
+
+    Q_CLASSINFO("DefaultProperty", "data")
+    Q_CLASSINFO("ParentProperty", "parent")
+    QML_NAMED_ELEMENT(StackedLayout)
+
+    Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
+    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+
+public:
+    explicit ZStackedWidget(QWidget* parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };

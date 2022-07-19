@@ -2,12 +2,13 @@
 
 - [x] QWidget
 - [x] QVBoxLayout
-- [ ] QStackedLayout
+- [x] QStackedLayout
+- [x] QStackedWidget
 - [-] QLayoutItem
 - [-] QLayout
 > Base class for all the layouts.
 - [x] QHBoxLayout
-- [ ] QGridLayout
+- [x] QGridLayout
 - [x] QFormLayout
 - [-] QBoxLayout
 > Base class for QVBoxLayout and QHBoxLayout. No Need to be implemented.
@@ -131,7 +132,6 @@
 - [ ] QSplashScreen
 - [ ] QSplitter
 - [ ] QSplitterHandle
-- [ ] QStackedWidget
 - [ ] QStandardItemEditorCreator
 - [ ] QStatusBar
 - [ ] QStyle
