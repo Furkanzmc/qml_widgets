@@ -1,18 +1,34 @@
 import Qml.Widgets
+import QtQml 2.15
 
 Widget {
+    id: root
     visible: true
     windowTitle: "QML QWidget Gallery"
 
     HBoxLayout {
-        PushButton {
-            text: "MessageBox"
-            onClicked: {
-                mb.open()
-            }
-        }
-
         VBoxLayout {
+            PushButton {
+                text: "MessageBox"
+                onClicked: {
+                    mb.open()
+                }
+            }
+
+            PushButton {
+                text: "Calculator"
+
+                property Calculator calculator
+
+                onClicked: {
+                    if (!calculator) {
+                        calculator = cmp.createObject(root)
+                    }
+
+                    calculator.visible = true
+                }
+            }
+
             PushButton {
                 text: "ColorDialog"
                 toolTip: "Show color dialog using QColorDialog"
@@ -25,9 +41,17 @@ Widget {
                 id: colorLabel
                 text: "Pick Color"
             }
+        }
 
-            TextEdit {
+        VBoxLayout {
+            HBoxLayout {
+                Label {
+                    text: "TextEdit"
+                }
 
+                TextEdit {
+
+                }
             }
 
             HBoxLayout {
@@ -36,6 +60,16 @@ Widget {
                 }
 
                 LineEdit {
+
+                }
+            }
+
+            HBoxLayout {
+                Label {
+                    text: "PlainTextEdit"
+                }
+
+                PlainTextEdit {
 
                 }
             }
@@ -62,15 +96,60 @@ Widget {
 
                 RadioButton {
                     text: "Or don't"
-                    Layout.row: 0
-                    Layout.column: 2
+                    Layout.row: 1
+                    Layout.column: 0
                 }
 
                 CheckBox {
                     text: "Check me out twice"
                     toolTip: "Show color dialog using QColorDialog"
                     Layout.row: 1
-                    Layout.column: 0
+                    Layout.column: 1
+                }
+            }
+        }
+
+        GroupBox {
+            title: "Buttons"
+
+            VBoxLayout {
+                PushButton {
+                    text: "PushButton"
+                }
+
+                ToolButton {
+                    text: "ToolButton"
+                }
+
+                GridLayout {
+
+                    ToolButton {
+                        text: "Up Arrow"
+                        arrowType: Qt.UpArrow
+                        Layout.row: 0
+                        Layout.column: 0
+                    }
+
+                    ToolButton {
+                        text: "RightArrow"
+                        arrowType: Qt.RightArrow
+                        Layout.row: 0
+                        Layout.column: 1
+                    }
+
+                    ToolButton {
+                        text: "LeftArrow"
+                        arrowType: Qt.LeftArrow
+                        Layout.row: 1
+                        Layout.column: 0
+                    }
+
+                    ToolButton {
+                        text: "BottomArrow"
+                        arrowType: Qt.DownArrow
+                        Layout.row: 1
+                        Layout.column: 1
+                    }
                 }
             }
         }
@@ -220,5 +299,11 @@ Widget {
         onAccepted: {
             colorLabel.text = "Selected Color: " + currentColor
         }
+    }
+
+    Component {
+        id: cmp
+
+        Calculator { }
     }
 }

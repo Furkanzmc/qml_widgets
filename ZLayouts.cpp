@@ -25,7 +25,12 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
               qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             assert(layoutAtt);
-            layout->addWidget(widget, layoutAtt->row(), layoutAtt->column());
+            layout->addWidget(widget,
+                              layoutAtt->row(),
+                              layoutAtt->column(),
+                              layoutAtt->rowSpan(),
+                              layoutAtt->columnSpan(),
+                              layoutAtt->alignment());
         }
         else {
             layout->addWidget(widget);
@@ -37,8 +42,12 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
               qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             assert(layoutAtt);
-            layout->addLayout(
-              childLayout, layoutAtt->row(), layoutAtt->column());
+            layout->addLayout(childLayout,
+                              layoutAtt->row(),
+                              layoutAtt->column(),
+                              layoutAtt->rowSpan(),
+                              layoutAtt->columnSpan(),
+                              layoutAtt->alignment());
         }
         else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
             layout->addRow(childLayout);

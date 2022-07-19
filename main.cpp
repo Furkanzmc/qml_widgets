@@ -15,6 +15,8 @@
 #include <QRadioButton>
 #include <QTextEdit>
 #include <QLineEdit>
+#include <QToolButton>
+#include <QPlainTextEdit>
 
 int main(int argc, char* argv[])
 {
@@ -52,6 +54,8 @@ int main(int argc, char* argv[])
     qmlRegisterType<QRadioButton>("Qml.Widgets", 1, 0, "RadioButton");
     qmlRegisterType<QTextEdit>("Qml.Widgets", 1, 0, "TextEdit");
     qmlRegisterType<QLineEdit>("Qml.Widgets", 1, 0, "LineEdit");
+    qmlRegisterType<QToolButton>("Qml.Widgets", 1, 0, "ToolButton");
+    qmlRegisterType<QPlainTextEdit>("Qml.Widgets", 1, 0, "PlainTextEdit");
 
     QObject::connect(
       &engine,

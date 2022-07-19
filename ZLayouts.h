@@ -188,8 +188,8 @@ signals:
 private:
     int m_row{};
     int m_column{};
-    int m_rowSpan{};
-    int m_columnSpan{};
+    int m_rowSpan{1};
+    int m_columnSpan{1};
     Qt::Alignment m_alignment{};
     qreal m_margins{};
     qreal m_leftMargin{};
