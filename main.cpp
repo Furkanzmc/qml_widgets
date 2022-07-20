@@ -20,6 +20,7 @@
 #include <QSpinBox>
 #include <QSlider>
 #include <QProgressBar>
+#include <QMainWindow>
 
 int main(int argc, char* argv[])
 {
@@ -62,6 +63,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<QSpinBox>("Qml.Widgets", 1, 0, "SpinBox");
     qmlRegisterType<QSlider>("Qml.Widgets", 1, 0, "Slider");
     qmlRegisterType<QProgressBar>("Qml.Widgets", 1, 0, "ProgressBar");
+    qmlRegisterType<QMainWindow>("Qml.Widgets", 1, 0, "QMainWindow");
 
     QObject::connect(
       &engine,
