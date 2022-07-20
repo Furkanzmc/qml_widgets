@@ -3,6 +3,7 @@ import QtQml 2.15
 
 Widget {
     id: root
+    height: 200
     visible: true
     windowTitle: "QML QWidget Gallery"
 

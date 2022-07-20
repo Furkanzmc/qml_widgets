@@ -56,3 +56,37 @@ void ZWidget::setParentInternal(QObject* w)
     setParent(qobject_cast<QWidget*>(w));
     emit parentChanged(QPrivateSignal{});
 }
+
+int ZWidget::width() const
+{
+    return size().width();
+}
+
+void ZWidget::setWidth(int value)
+{
+    auto sz{ size() };
+    if (sz.width() == value) {
+        return;
+    }
+
+    sz.setWidth(value);
+    resize(sz);
+    emit widthChanged(QPrivateSignal{});
+}
+
+int ZWidget::height() const
+{
+    return size().height();
+}
+
+void ZWidget::setHeight(int value)
+{
+    auto sz{ size() };
+    if (sz.height() == value) {
+        return;
+    }
+
+    sz.setHeight(value);
+    resize(sz);
+    emit heightChanged(QPrivateSignal{});
+}
