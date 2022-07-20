@@ -17,6 +17,9 @@
 #include <QLineEdit>
 #include <QToolButton>
 #include <QPlainTextEdit>
+#include <QSpinBox>
+#include <QSlider>
+#include <QProgressBar>
 
 int main(int argc, char* argv[])
 {
@@ -56,6 +59,9 @@ int main(int argc, char* argv[])
     qmlRegisterType<QLineEdit>("Qml.Widgets", 1, 0, "LineEdit");
     qmlRegisterType<QToolButton>("Qml.Widgets", 1, 0, "ToolButton");
     qmlRegisterType<QPlainTextEdit>("Qml.Widgets", 1, 0, "PlainTextEdit");
+    qmlRegisterType<QSpinBox>("Qml.Widgets", 1, 0, "SpinBox");
+    qmlRegisterType<QSlider>("Qml.Widgets", 1, 0, "Slider");
+    qmlRegisterType<QProgressBar>("Qml.Widgets", 1, 0, "ProgressBar");
 
     QObject::connect(
       &engine,

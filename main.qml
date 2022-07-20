@@ -180,6 +180,25 @@ Widget {
                     }
                 }
 
+                Slider {
+                    id: slider
+                    maximum: 100
+                    minimum: 0
+                    orientation: Qt.Horizontal
+                    value: spinBox.value
+                }
+
+                SpinBox {
+                    id: spinBox
+                    value: slider.value
+                }
+
+                ProgressBar {
+                    minimum: 0
+                    maximum: 100
+                    value: slider.value
+                }
+
                 HBoxLayout {
                     PushButton {
                         text: "Four"
@@ -292,6 +311,10 @@ Widget {
     MessageBox {
         id: mb
         text: "Hello world!"
+        informativeText: "So long long ago"
+        detailedText: "Hello from the other side."
+        standardButtons: MessageBox.Ok | MessageBox.Discard
+        icon: MessageBox.Warning
     }
 
     ColorDialog {

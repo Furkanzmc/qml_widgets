@@ -15,12 +15,12 @@
 - [x] QToolButton
 - [x] QTextEdit
 - [x] QRadioButton
-- [ ] QSpinBox
-- [ ] QSlider
+- [x] QSpinBox
+- [x] QSlider
 - [x] QPlainTextEdit
-- [ ] QProgressBar
+- [x] QProgressBar
 - [x] QPushButton
-- [ ] QMessageBox
+- [x] QMessageBox
 - [ ] QMenuBar
 - [ ] QMenu
 - [ ] QMainWindow
@@ -40,7 +40,7 @@
 - [ ] QDateTimeEdit
 - [ ] QDateEdit
 - [ ] QCommandLinkButton
-- [ ] QColorDialog
+- [x] QColorDialog
 - [x] QCheckBox
 - [ ] QButtonGroup
 

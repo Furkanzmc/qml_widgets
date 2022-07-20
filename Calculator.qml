@@ -1,6 +1,7 @@
 import Qml.Widgets
 
 Widget {
+    id: root
     visible: true
     windowTitle: "Calculator"
 
