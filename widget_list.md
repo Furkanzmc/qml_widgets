@@ -113,6 +113,18 @@
 
 ## Later
 
+- [ ] QGraphicsView
+- [ ] QGraphicsWidget
+
+## Questiionable
+
+- [ ] QAbstractButton
+- [ ] QAbstractGraphicsShapeItem
+- [ ] QAbstractItemDelegate
+- [ ] QAbstractItemView
+- [ ] QAbstractScrollArea
+- [ ] QAbstractSlider
+- [ ] QAbstractSpinBox
 - [ ] QCommonStyle
 - [ ] QProxyStyle
 - [ ] QStyle
@@ -187,15 +199,3 @@
 - [ ] QGraphicsSimpleTextItem
 - [ ] QGraphicsTextItem
 - [ ] QGraphicsTransform
-- [ ] QGraphicsView
-- [ ] QGraphicsWidget
-
-## Questiionable
-
-- [ ] QAbstractButton
-- [ ] QAbstractGraphicsShapeItem
-- [ ] QAbstractItemDelegate
-- [ ] QAbstractItemView
-- [ ] QAbstractScrollArea
-- [ ] QAbstractSlider
-- [ ] QAbstractSpinBox
