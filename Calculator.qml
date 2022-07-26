@@ -2,6 +2,13 @@ import Qml.Widgets
 
 Widget {
     id: root
+
+    component NumberButton: PushButton {
+        onClicked: {
+            display.text += text
+        }
+    }
+
     visible: true
     windowTitle: "Calculator"
 
@@ -49,19 +56,19 @@ Widget {
             Layout.column: 0
         }
 
-        PushButton {
+        NumberButton {
             text: "7"
             Layout.row: 2
             Layout.column: 1
         }
 
-        PushButton {
+        NumberButton {
             text: "8"
             Layout.row: 2
             Layout.column: 2
         }
 
-        PushButton {
+        NumberButton {
             text: "9"
             Layout.row: 2
             Layout.column: 3
@@ -87,19 +94,19 @@ Widget {
             Layout.column: 0
         }
 
-        PushButton {
+        NumberButton {
             text: "4"
             Layout.row: 3
             Layout.column: 1
         }
 
-        PushButton {
+        NumberButton {
             text: "5"
             Layout.row: 3
             Layout.column: 2
         }
 
-        PushButton {
+        NumberButton {
             text: "6"
             Layout.row: 3
             Layout.column: 3
@@ -125,19 +132,19 @@ Widget {
             Layout.column: 0
         }
 
-        PushButton {
+        NumberButton {
             text: "1"
             Layout.row: 4
             Layout.column: 1
         }
 
-        PushButton {
+        NumberButton {
             text: "2"
             Layout.row: 4
             Layout.column: 2
         }
 
-        PushButton {
+        NumberButton {
             text: "3"
             Layout.row: 4
             Layout.column: 3
@@ -163,7 +170,7 @@ Widget {
             Layout.column: 0
         }
 
-        PushButton {
+        NumberButton {
             text: "0"
             Layout.row: 5
             Layout.column: 1

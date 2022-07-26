@@ -26,20 +26,21 @@
 - [ ] QMainWindow
 - [x] QLineEdit
 - [x] QLabel
-- [ ] QKeySequenceEdit
+- [x] QKeySequenceEdit
 - [ ] QInputDialog
 - [x] QGroupBox
-- [ ] QFontDialog
+- [x] QFontDialog
 - [ ] QFontComboBox
-- [ ] QFileDialog
+- [x] QFileDialog
 - [ ] QErrorMessage
 - [ ] QDoubleSpinBox
 - [ ] QDialogButtonBox
-- [ ] QDialog
+- [-] QDialog
+> This is the base class for other dialogs. No need to expose it.
 - [ ] QDial
 - [ ] QDateTimeEdit
 - [ ] QDateEdit
-- [ ] QCommandLinkButton
+- [x] QCommandLinkButton
 - [x] QColorDialog
 - [x] QCheckBox
 - [ ] QButtonGroup

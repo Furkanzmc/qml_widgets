@@ -21,6 +21,10 @@
 #include <QSlider>
 #include <QProgressBar>
 #include <QMainWindow>
+#include <QKeySequenceEdit>
+#include <QFontDialog>
+#include <QFileDialog>
+#include <QCommandLinkButton>
 
 int main(int argc, char* argv[])
 {
@@ -64,6 +68,10 @@ int main(int argc, char* argv[])
     qmlRegisterType<QSlider>("Qml.Widgets", 1, 0, "Slider");
     qmlRegisterType<QProgressBar>("Qml.Widgets", 1, 0, "ProgressBar");
     qmlRegisterType<QMainWindow>("Qml.Widgets", 1, 0, "QMainWindow");
+    qmlRegisterType<QKeySequenceEdit>("Qml.Widgets", 1, 0, "KeySequenceEdit");
+    qmlRegisterType<QFontDialog>("Qml.Widgets", 1, 0, "FontDialog");
+    qmlRegisterType<QFileDialog>("Qml.Widgets", 1, 0, "FileDialog");
+    qmlRegisterType<QCommandLinkButton>("Qml.Widgets", 1, 0, "CommandLinkButton");
 
     QObject::connect(
       &engine,

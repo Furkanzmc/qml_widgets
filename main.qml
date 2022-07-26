@@ -10,13 +10,6 @@ Widget {
     HBoxLayout {
         VBoxLayout {
             PushButton {
-                text: "MessageBox"
-                onClicked: {
-                    mb.open()
-                }
-            }
-
-            PushButton {
                 text: "Calculator"
 
                 property Calculator calculator
@@ -27,14 +20,6 @@ Widget {
                     }
 
                     calculator.visible = true
-                }
-            }
-
-            PushButton {
-                text: "ColorDialog"
-                toolTip: "Show color dialog using QColorDialog"
-                onClicked: {
-                    cd.open()
                 }
             }
 
@@ -122,6 +107,10 @@ Widget {
                     text: "ToolButton"
                 }
 
+                CommandLinkButton {
+                    text: "Command Link"
+                }
+
                 GridLayout {
 
                     ToolButton {
@@ -150,6 +139,41 @@ Widget {
                         arrowType: Qt.DownArrow
                         Layout.row: 1
                         Layout.column: 1
+                    }
+                }
+            }
+        }
+
+        GroupBox {
+            title: "Dialogs"
+
+            VBoxLayout {
+                PushButton {
+                    text: "Font Dialog"
+                    onClicked: {
+                        fd.open()
+                    }
+                }
+
+                PushButton {
+                    text: "Color Dialog"
+                    toolTip: "Show color dialog using QColorDialog"
+                    onClicked: {
+                        cd.open()
+                    }
+                }
+
+                PushButton {
+                    text: "Message Box"
+                    onClicked: {
+                        mb.open()
+                    }
+                }
+
+                PushButton {
+                    text: "File Dialog"
+                    onClicked: {
+                        fileDialog.open()
                     }
                 }
             }
@@ -257,6 +281,10 @@ Widget {
                                 sl.currentIndex = 0
                             }
                         }
+
+                        KeySequenceEdit {
+
+                        }
                     }
                 }
             }
@@ -322,6 +350,20 @@ Widget {
         options: ColorDialog.ShowAlphaChannel | ColorDialog.DontUseNativeDialog
         onAccepted: {
             colorLabel.text = "Selected Color: " + currentColor
+        }
+    }
+
+    FontDialog {
+        id: fd
+        onCurrentFontChanged: {
+            console.log("[main.qml::342::onCurrentFontChanged]", currentFont)
+        }
+    }
+
+    FileDialog {
+        id: fileDialog
+        onFileSelected: (file) => {
+            console.log("[main.qml::342::onFileSelected]", file)
         }
     }
 
