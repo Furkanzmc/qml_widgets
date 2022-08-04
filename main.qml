@@ -12,20 +12,43 @@ Widget {
             PushButton {
                 text: "Calculator"
 
-                property Calculator calculator
+                property Calculator window
 
                 onClicked: {
-                    if (!calculator) {
-                        calculator = cmp.createObject(root)
+                    if (!window) {
+                        window = cmpCalculator.createObject(root)
                     }
 
-                    calculator.visible = true
+                    window.visible = true
                 }
             }
 
-            Label {
-                id: colorLabel
-                text: "Pick Color"
+            PushButton {
+                text: "Buttons Gallery"
+
+                property ButtonsGallery window
+
+                onClicked: {
+                    if (!window) {
+                        window = cmpButtonsGallery.createObject(root)
+                    }
+
+                    window.visible = true
+                }
+            }
+
+            PushButton {
+                text: "Text Editing Gallery"
+
+                property TextEditingGallery window
+
+                onClicked: {
+                    if (!window) {
+                        window = cmpTextEditingGallery.createObject(root)
+                    }
+
+                    window.visible = true
+                }
             }
         }
 
@@ -93,53 +116,23 @@ Widget {
                     Layout.column: 1
                 }
             }
-        }
 
-        GroupBox {
-            title: "Buttons"
+            GroupBox {
+                title: "Buttons"
 
-            VBoxLayout {
-                PushButton {
-                    text: "PushButton"
-                }
-
-                ToolButton {
-                    text: "ToolButton"
-                }
-
-                CommandLinkButton {
-                    text: "Command Link"
-                }
-
-                GridLayout {
-
-                    ToolButton {
-                        text: "Up Arrow"
-                        arrowType: Qt.UpArrow
-                        Layout.row: 0
-                        Layout.column: 0
+                VBoxLayout {
+                    PushButton {
+                        text: "PushButton"
                     }
 
                     ToolButton {
-                        text: "RightArrow"
-                        arrowType: Qt.RightArrow
-                        Layout.row: 0
-                        Layout.column: 1
+                        text: "ToolButton"
                     }
 
-                    ToolButton {
-                        text: "LeftArrow"
-                        arrowType: Qt.LeftArrow
-                        Layout.row: 1
-                        Layout.column: 0
+                    CommandLinkButton {
+                        text: "Command Link"
                     }
 
-                    ToolButton {
-                        text: "BottomArrow"
-                        arrowType: Qt.DownArrow
-                        Layout.row: 1
-                        Layout.column: 1
-                    }
                 }
             }
         }
@@ -248,82 +241,84 @@ Widget {
             }
         }
 
-        GroupBox {
-            title: "StackLayout"
-
-            StackLayout {
-                id: sl
-
-                Widget {
-                    VBoxLayout {
-                        Label {
-                            text: "Page 1"
-                        }
-
-                        PushButton {
-                            text: "Go to Page 2"
-                            onClicked: {
-                                sl.currentIndex = 1
-                            }
-                        }
-                    }
-                }
-
-                Widget {
-                    VBoxLayout {
-                        Label {
-                            text: "Page 2"
-                        }
-
-                        PushButton {
-                            text: "Go to Page 1"
-                            onClicked: {
-                                sl.currentIndex = 0
-                            }
-                        }
-
-                        KeySequenceEdit {
-
-                        }
-                    }
-                }
-            }
-        }
-
         VBoxLayout {
+            GroupBox {
+                title: "StackLayout"
 
-            Label {
-                text: "StackWidget"
-            }
+                StackLayout {
+                    id: sl
 
-            StackWidget {
-                id: sw
+                    Widget {
+                        VBoxLayout {
+                            Label {
+                                text: "Page 1"
+                            }
 
-                Widget {
-                    VBoxLayout {
-                        Label {
-                            text: "Page 1"
+                            PushButton {
+                                text: "Go to Page 2"
+                                onClicked: {
+                                    sl.currentIndex = 1
+                                }
+                            }
                         }
+                    }
 
-                        PushButton {
-                            text: "Go to Page 2"
-                            onClicked: {
-                                sw.currentIndex = 1
+                    Widget {
+                        VBoxLayout {
+                            Label {
+                                text: "Page 2"
+                            }
+
+                            PushButton {
+                                text: "Go to Page 1"
+                                onClicked: {
+                                    sl.currentIndex = 0
+                                }
+                            }
+
+                            KeySequenceEdit {
+
                             }
                         }
                     }
                 }
+            }
 
-                Widget {
-                    VBoxLayout {
-                        Label {
-                            text: "Page 2"
+            VBoxLayout {
+
+                Label {
+                    text: "StackWidget"
+                }
+
+                StackWidget {
+                    id: sw
+
+                    Widget {
+                        VBoxLayout {
+                            Label {
+                                text: "Page 1"
+                            }
+
+                            PushButton {
+                                text: "Go to Page 2"
+                                onClicked: {
+                                    sw.currentIndex = 1
+                                }
+                            }
                         }
+                    }
 
-                        PushButton {
-                            text: "Go to Page 1"
-                            onClicked: {
-                                sw.currentIndex = 0
+                    Widget {
+                        VBoxLayout {
+                            Label {
+                                text: "Page 2"
+                            }
+
+                            PushButton {
+                                text: "Go to Page 1"
+                                onClicked: {
+                                    sw.currentIndex = 0
+                                }
                             }
                         }
                     }
@@ -368,8 +363,20 @@ Widget {
     }
 
     Component {
-        id: cmp
+        id: cmpCalculator
 
         Calculator { }
+    }
+
+    Component {
+        id: cmpButtonsGallery
+
+        ButtonsGallery { }
+    }
+
+    Component {
+        id: cmpTextEditingGallery
+
+        TextEditingGallery { }
     }
 }

@@ -7,6 +7,7 @@
 #include <QGridLayout>
 #include <QStackedLayout>
 #include <QStackedWidget>
+#include <QSpacerItem>
 
 #include <QWidget>
 #include <qqml.h>
@@ -188,14 +189,53 @@ signals:
 private:
     int m_row{};
     int m_column{};
-    int m_rowSpan{1};
-    int m_columnSpan{1};
+    int m_rowSpan{ 1 };
+    int m_columnSpan{ 1 };
     Qt::Alignment m_alignment{};
     qreal m_margins{};
     qreal m_leftMargin{};
     qreal m_topMargin{};
     qreal m_rightMargin{};
     qreal m_bottomMargin{};
+};
+
+class ZSpacerItem
+  : public QSpacerItem
+  , public QObject {
+
+    Q_OBJECT
+
+    Q_PROPERTY(int width READ width WRITE setWidth NOTIFY widthChanged)
+    Q_PROPERTY(int height READ height WRITE setHeight NOTIFY heightChanged)
+
+    Q_PROPERTY(
+      QSizePolicy::Policy horizontalSizePolicy READ horizontalSizePolicy WRITE
+        setHorizontalSizePolicy NOTIFY horizontalSizePolicyChanged)
+    Q_PROPERTY(QSizePolicy::Policy verticalSizePolicy READ verticalSizePolicy
+                 WRITE setVerticalSizePolicy NOTIFY verticalSizePolicyChanged)
+
+    Q_PROPERTY(QSizePolicy sizePolicy READ sizePolicy NOTIFY sizePolicyChanged)
+
+    Q_PROPERTY(QRect geometry READ geometry WRITE setGeometryInternal NOTIFY
+                 geometryChanged)
+
+    Q_PROPERTY(Qt::Orientations expandingDirections READ expandingDirections
+                 NOTIFY expandingDirectionsChanged)
+
+    Q_PROPERTY(QSize minimumSize READ minimumSize NOTIFY minimumSizeChanged)
+    Q_PROPERTY(QSize maximumSize READ maximumSize NOTIFY maximumSizeChanged)
+
+    Q_PROPERTY(bool empty READ isEmpty)
+
+public:
+    explicit ZSpacerItem(QObject* parent = nullptr);
+
+signals:
+    void widthChanged(QPrivateSignal);
+    void heightChanged(QPrivateSignal);
+    void horizontalSizePolicyChanged(QPrivateSignal);
+    void verticalSizePolicyChanged(QPrivateSignal);
+    void sizePolicyChanged(QPrivateSignal);
 };
 
 QML_DECLARE_TYPEINFO(ZLayoutAttached, QML_HAS_ATTACHED_PROPERTIES);

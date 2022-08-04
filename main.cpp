@@ -52,6 +52,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<ZStackedWidget>("Qml.Widgets", 1, 0, "StackWidget");
     qmlRegisterUncreatableType<ZLayoutAttached>(
       "Qml.Widgets", 1, 0, "Layout", "Cannot create from QML.");
+    qmlRegisterType<ZSpacerItem>("Qml.Widgets", 1, 0, "Spacer");
 
     qmlRegisterType<QLabel>("Qml.Widgets", 1, 0, "Label");
     qmlRegisterType<QPushButton>("Qml.Widgets", 1, 0, "PushButton");
@@ -71,7 +72,8 @@ int main(int argc, char* argv[])
     qmlRegisterType<QKeySequenceEdit>("Qml.Widgets", 1, 0, "KeySequenceEdit");
     qmlRegisterType<QFontDialog>("Qml.Widgets", 1, 0, "FontDialog");
     qmlRegisterType<QFileDialog>("Qml.Widgets", 1, 0, "FileDialog");
-    qmlRegisterType<QCommandLinkButton>("Qml.Widgets", 1, 0, "CommandLinkButton");
+    qmlRegisterType<QCommandLinkButton>(
+      "Qml.Widgets", 1, 0, "CommandLinkButton");
 
     QObject::connect(
       &engine,
