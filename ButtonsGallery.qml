@@ -62,7 +62,6 @@ Widget {
         CommandLinkButton {
             text: "Command Link"
         }
-
     }
 }
 

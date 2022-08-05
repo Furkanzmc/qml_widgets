@@ -19,10 +19,12 @@ QQmlListProperty<QObject> ZWidget::data()
           assert(object);
           auto* parent = static_cast<ZWidget*>(prop->object);
           assert(parent);
-          assert(!qobject_cast<ZWidget*>(object));
           auto* layout{ qobject_cast<QLayout*>(object) };
           if (layout && !parent->layout()) {
               parent->setLayout(layout);
+          }
+          else if (!object->parent()) {
+              object->setParent(parent);
           }
       },
       // Count

@@ -135,6 +135,9 @@ class ZLayoutAttached : public QObject {
     Q_PROPERTY(qreal bottomMargin READ bottomMargin WRITE setBottomMargin RESET
                  resetBottomMargin NOTIFY bottomMarginChanged)
 
+    // Only used with ZFormLayout
+    Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
+
 public:
     ZLayoutAttached(QObject* parent);
 
@@ -174,6 +177,9 @@ public:
     void setBottomMargin(qreal value);
     void resetBottomMargin();
 
+    QString label() const;
+    void setLabel(const QString& lb);
+
 signals:
     void rowChanged(QPrivateSignal);
     void columnChanged(QPrivateSignal);
@@ -185,6 +191,7 @@ signals:
     void topMarginChanged(QPrivateSignal);
     void rightMarginChanged(QPrivateSignal);
     void bottomMarginChanged(QPrivateSignal);
+    void labelChanged(QPrivateSignal);
 
 private:
     int m_row{};
@@ -197,11 +204,12 @@ private:
     qreal m_topMargin{};
     qreal m_rightMargin{};
     qreal m_bottomMargin{};
+    QString m_label{};
 };
 
 class ZSpacerItem
-  : public QSpacerItem
-  , public QObject {
+  : public QObject
+  , public QSpacerItem {
 
     Q_OBJECT
 
@@ -214,8 +222,6 @@ class ZSpacerItem
     Q_PROPERTY(QSizePolicy::Policy verticalSizePolicy READ verticalSizePolicy
                  WRITE setVerticalSizePolicy NOTIFY verticalSizePolicyChanged)
 
-    Q_PROPERTY(QSizePolicy sizePolicy READ sizePolicy NOTIFY sizePolicyChanged)
-
     Q_PROPERTY(QRect geometry READ geometry WRITE setGeometryInternal NOTIFY
                  geometryChanged)
 
@@ -225,17 +231,34 @@ class ZSpacerItem
     Q_PROPERTY(QSize minimumSize READ minimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QSize maximumSize READ maximumSize NOTIFY maximumSizeChanged)
 
-    Q_PROPERTY(bool empty READ isEmpty)
+    Q_PROPERTY(bool empty READ isEmpty CONSTANT)
 
 public:
     explicit ZSpacerItem(QObject* parent = nullptr);
+
+    int width() const;
+    void setWidth(int value);
+
+    int height() const;
+    void setHeight(int value);
+
+    QSizePolicy::Policy horizontalSizePolicy() const;
+    void setHorizontalSizePolicy(QSizePolicy::Policy policy);
+
+    QSizePolicy::Policy verticalSizePolicy() const;
+    void setVerticalSizePolicy(QSizePolicy::Policy policy);
+
+    void setGeometryInternal(const QRect& value);
 
 signals:
     void widthChanged(QPrivateSignal);
     void heightChanged(QPrivateSignal);
     void horizontalSizePolicyChanged(QPrivateSignal);
     void verticalSizePolicyChanged(QPrivateSignal);
-    void sizePolicyChanged(QPrivateSignal);
+    void geometryChanged(QPrivateSignal);
+    void expandingDirectionsChanged(QPrivateSignal);
+    void minimumSizeChanged(QPrivateSignal);
+    void maximumSizeChanged(QPrivateSignal);
 };
 
 QML_DECLARE_TYPEINFO(ZLayoutAttached, QML_HAS_ATTACHED_PROPERTIES);

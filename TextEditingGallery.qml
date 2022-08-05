@@ -6,58 +6,32 @@ Widget {
     visible: true
     windowTitle: "Text Editing Gallery"
 
-    VBoxLayout {
-        HBoxLayout {
-            Label {
-                text: "First Name"
-            }
+    FormLayout {
+        labelAlignment: Qt.AlignLeft
 
-            Spacer {
-            }
-
-            LineEdit {
-
-            }
+        LineEdit {
+            Layout.label: "First Name"
         }
 
-        HBoxLayout {
-            Label {
-                text: "Last Name"
-            }
-
-            LineEdit {
-
-            }
+        LineEdit {
+            Layout.label: "Last Name"
         }
 
-        HBoxLayout {
-            Label {
-                text: "Email"
-            }
+        LineEdit {
+            Layout.label:  "Email"
 
-            LineEdit {
-
-            }
         }
 
-        HBoxLayout {
-            Label {
-                text: "Plain Text Field"
-            }
-
-            PlainTextEdit {
-
-            }
+        PlainTextEdit {
+            Layout.label: "Plain Text Field"
         }
 
-        HBoxLayout {
-            Label {
-                text: "About Me"
-            }
+        TextEdit {
+            Layout.label: "About Me"
+        }
 
-            TextEdit {
-
-            }
+        KeySequenceEdit {
+            Layout.label: "Shortcut"
         }
     }
 }

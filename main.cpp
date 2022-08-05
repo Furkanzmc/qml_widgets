@@ -56,9 +56,6 @@ int main(int argc, char* argv[])
 
     qmlRegisterType<QLabel>("Qml.Widgets", 1, 0, "Label");
     qmlRegisterType<QPushButton>("Qml.Widgets", 1, 0, "PushButton");
-    qmlRegisterType<QErrorMessage>("Qml.Widgets", 1, 0, "ErrorMessage");
-    qmlRegisterType<QMessageBox>("Qml.Widgets", 1, 0, "MessageBox");
-    qmlRegisterType<QColorDialog>("Qml.Widgets", 1, 0, "ColorDialog");
     qmlRegisterType<QCheckBox>("Qml.Widgets", 1, 0, "CheckBox");
     qmlRegisterType<QRadioButton>("Qml.Widgets", 1, 0, "RadioButton");
     qmlRegisterType<QTextEdit>("Qml.Widgets", 1, 0, "TextEdit");
@@ -70,10 +67,14 @@ int main(int argc, char* argv[])
     qmlRegisterType<QProgressBar>("Qml.Widgets", 1, 0, "ProgressBar");
     qmlRegisterType<QMainWindow>("Qml.Widgets", 1, 0, "QMainWindow");
     qmlRegisterType<QKeySequenceEdit>("Qml.Widgets", 1, 0, "KeySequenceEdit");
-    qmlRegisterType<QFontDialog>("Qml.Widgets", 1, 0, "FontDialog");
-    qmlRegisterType<QFileDialog>("Qml.Widgets", 1, 0, "FileDialog");
     qmlRegisterType<QCommandLinkButton>(
       "Qml.Widgets", 1, 0, "CommandLinkButton");
+
+    qmlRegisterType<QErrorMessage>("Qml.Widgets.Dialogs", 1, 0, "ErrorMessage");
+    qmlRegisterType<QMessageBox>("Qml.Widgets.Dialogs", 1, 0, "MessageBox");
+    qmlRegisterType<QColorDialog>("Qml.Widgets.Dialogs", 1, 0, "ColorDialog");
+    qmlRegisterType<QFontDialog>("Qml.Widgets.Dialogs", 1, 0, "FontDialog");
+    qmlRegisterType<QFileDialog>("Qml.Widgets.Dialogs", 1, 0, "FileDialog");
 
     QObject::connect(
       &engine,

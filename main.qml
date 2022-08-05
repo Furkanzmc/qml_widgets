@@ -50,124 +50,18 @@ Widget {
                     window.visible = true
                 }
             }
-        }
 
-        VBoxLayout {
-            HBoxLayout {
-                Label {
-                    text: "TextEdit"
-                }
+            PushButton {
+                text: "Dialogs Gallery"
 
-                TextEdit {
+                property DialogsGallery window
 
-                }
-            }
-
-            HBoxLayout {
-                Label {
-                    text: "First Name"
-                }
-
-                LineEdit {
-
-                }
-            }
-
-            HBoxLayout {
-                Label {
-                    text: "PlainTextEdit"
-                }
-
-                PlainTextEdit {
-
-                }
-            }
-        }
-
-        VBoxLayout {
-            Label {
-                text: "GridLayout"
-            }
-
-            GridLayout {
-                CheckBox {
-                    text: "Check me out"
-                    toolTip: "Show color dialog using QColorDialog"
-                    Layout.row: 0
-                    Layout.column: 0
-                }
-
-                RadioButton {
-                    text: "Call me Misty."
-                    Layout.row: 0
-                    Layout.column: 1
-                }
-
-                RadioButton {
-                    text: "Or don't"
-                    Layout.row: 1
-                    Layout.column: 0
-                }
-
-                CheckBox {
-                    text: "Check me out twice"
-                    toolTip: "Show color dialog using QColorDialog"
-                    Layout.row: 1
-                    Layout.column: 1
-                }
-            }
-
-            GroupBox {
-                title: "Buttons"
-
-                VBoxLayout {
-                    PushButton {
-                        text: "PushButton"
+                onClicked: {
+                    if (!window) {
+                        window = cmpDialogs.createObject(root)
                     }
 
-                    ToolButton {
-                        text: "ToolButton"
-                    }
-
-                    CommandLinkButton {
-                        text: "Command Link"
-                    }
-
-                }
-            }
-        }
-
-        GroupBox {
-            title: "Dialogs"
-
-            VBoxLayout {
-                PushButton {
-                    text: "Font Dialog"
-                    onClicked: {
-                        fd.open()
-                    }
-                }
-
-                PushButton {
-                    text: "Color Dialog"
-                    toolTip: "Show color dialog using QColorDialog"
-                    onClicked: {
-                        cd.open()
-                    }
-                }
-
-                PushButton {
-                    text: "Message Box"
-                    onClicked: {
-                        mb.open()
-                    }
-                }
-
-                PushButton {
-                    text: "File Dialog"
-                    onClicked: {
-                        fileDialog.open()
-                    }
+                    window.visible = true
                 }
             }
         }
@@ -276,9 +170,6 @@ Widget {
                                 }
                             }
 
-                            KeySequenceEdit {
-
-                            }
                         }
                     }
                 }
@@ -327,41 +218,6 @@ Widget {
         }
     }
 
-    ErrorMessage {
-        id: em
-    }
-
-    MessageBox {
-        id: mb
-        text: "Hello world!"
-        informativeText: "So long long ago"
-        detailedText: "Hello from the other side."
-        standardButtons: MessageBox.Ok | MessageBox.Discard
-        icon: MessageBox.Warning
-    }
-
-    ColorDialog {
-        id: cd
-        options: ColorDialog.ShowAlphaChannel | ColorDialog.DontUseNativeDialog
-        onAccepted: {
-            colorLabel.text = "Selected Color: " + currentColor
-        }
-    }
-
-    FontDialog {
-        id: fd
-        onCurrentFontChanged: {
-            console.log("[main.qml::342::onCurrentFontChanged]", currentFont)
-        }
-    }
-
-    FileDialog {
-        id: fileDialog
-        onFileSelected: (file) => {
-            console.log("[main.qml::342::onFileSelected]", file)
-        }
-    }
-
     Component {
         id: cmpCalculator
 
@@ -378,5 +234,11 @@ Widget {
         id: cmpTextEditingGallery
 
         TextEditingGallery { }
+    }
+
+    Component {
+        id: cmpDialogs
+
+        DialogsGallery { }
     }
 }

@@ -5,7 +5,7 @@
 
 namespace {
 template<class Layout>
-void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
+void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
 {
     auto* layout{ static_cast<Layout*>(prop->object) };
     assert(layout);
@@ -16,10 +16,18 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
         layout->setParent(nullptr);
     }
 
-    auto* widget{ qobject_cast<QWidget*>(o) };
+    auto* widget{ qobject_cast<QWidget*>(object) };
+    auto* layoutItem{ widget ? nullptr : qobject_cast<ZSpacerItem*>(object) };
     if (widget) {
         if constexpr (std::is_same_v<Layout, ZFormLayout>) {
-            layout->addRow(widget);
+            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
+              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+            if (layoutAtt) {
+                layout->addRow(layoutAtt->label(), widget);
+            }
+            else {
+                layout->addRow(widget);
+            }
         }
         else if constexpr (std::is_same_v<Layout, ZGridLayout>) {
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
@@ -36,8 +44,33 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* o)
             layout->addWidget(widget);
         }
     }
+    else if (layoutItem) {
+        if constexpr (std::is_same_v<Layout, ZGridLayout>) {
+            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
+              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+            assert(layoutAtt);
+            layout->addItem(layoutItem,
+                            layoutAtt->row(),
+                            layoutAtt->column(),
+                            layoutAtt->rowSpan(),
+                            layoutAtt->columnSpan(),
+                            layoutAtt->alignment());
+        }
+        else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
+            layout->addItem(layoutItem);
+        }
+        else if constexpr (std::is_same_v<Layout, ZStackedLayout>) {
+            assert("Cannot add spacer to ZStackedLayout." == 0);
+        }
+        else if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
+            assert("Cannot add spacer to ZStackedWidget." == 0);
+        }
+        else {
+            layout->addSpacerItem(dynamic_cast<QSpacerItem*>(layoutItem));
+        }
+    }
     else {
-        auto* childLayout{ qobject_cast<QLayout*>(o) };
+        auto* childLayout{ qobject_cast<QLayout*>(object) };
         if constexpr (std::is_same_v<Layout, ZGridLayout>) {
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
               qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
@@ -357,4 +390,130 @@ void ZLayoutAttached::setBottomMargin(qreal value)
 void ZLayoutAttached::resetBottomMargin()
 {
     setBottomMargin(0);
+}
+
+QString ZLayoutAttached::label() const
+{
+    return m_label;
+}
+
+void ZLayoutAttached::setLabel(const QString& lb)
+{
+    if (m_label == lb) {
+        return;
+    }
+
+    m_label = lb;
+    emit labelChanged(QPrivateSignal{});
+}
+
+ZSpacerItem::ZSpacerItem(QObject* parent)
+  : QObject{ parent }
+  , QSpacerItem{ 0, 0 }
+{
+}
+
+int ZSpacerItem::width() const
+{
+    return sizeHint().width();
+}
+
+void ZSpacerItem::setWidth(int value)
+{
+    if (width() == value) {
+        return;
+    }
+
+    const auto policy{ sizePolicy() };
+    changeSize(
+      value, height(), policy.horizontalPolicy(), policy.verticalPolicy());
+    emit widthChanged(QPrivateSignal{});
+}
+
+int ZSpacerItem::height() const
+{
+    return sizeHint().height();
+}
+
+void ZSpacerItem::setHeight(int value)
+{
+    if (height() == value) {
+        return;
+    }
+
+    const auto policy{ sizePolicy() };
+    changeSize(
+      width(), value, policy.horizontalPolicy(), policy.verticalPolicy());
+    emit heightChanged(QPrivateSignal{});
+}
+
+QSizePolicy::Policy ZSpacerItem::horizontalSizePolicy() const
+{
+    return sizePolicy().horizontalPolicy();
+}
+
+void ZSpacerItem::setHorizontalSizePolicy(QSizePolicy::Policy policy)
+{
+    if (horizontalSizePolicy() == policy) {
+        return;
+    }
+
+    const auto oldExpDirection{ expandingDirections() };
+    const auto oldMinSize{ minimumSize() };
+    const auto oldMaxSize{ maximumSize() };
+
+    changeSize(width(), height(), policy, sizePolicy().verticalPolicy());
+    emit horizontalSizePolicyChanged(QPrivateSignal{});
+    if (oldExpDirection != expandingDirections()) {
+        emit expandingDirectionsChanged(QPrivateSignal{});
+    }
+
+    if (oldMinSize != minimumSize()) {
+        emit minimumSizeChanged(QPrivateSignal{});
+    }
+
+    if (oldMaxSize != maximumSize()) {
+        emit maximumSizeChanged(QPrivateSignal{});
+    }
+}
+
+QSizePolicy::Policy ZSpacerItem::verticalSizePolicy() const
+{
+    return sizePolicy().verticalPolicy();
+}
+
+void ZSpacerItem::setVerticalSizePolicy(QSizePolicy::Policy policy)
+{
+    if (verticalSizePolicy() == policy) {
+        return;
+    }
+
+    const auto oldExpDirection{ expandingDirections() };
+    const auto oldMinSize{ minimumSize() };
+    const auto oldMaxSize{ maximumSize() };
+
+    changeSize(width(), height(), policy, sizePolicy().verticalPolicy());
+    emit verticalSizePolicyChanged(QPrivateSignal{});
+
+    if (oldExpDirection != expandingDirections()) {
+        emit expandingDirectionsChanged(QPrivateSignal{});
+    }
+
+    if (oldMinSize != minimumSize()) {
+        emit minimumSizeChanged(QPrivateSignal{});
+    }
+
+    if (oldMaxSize != maximumSize()) {
+        emit maximumSizeChanged(QPrivateSignal{});
+    }
+}
+
+void ZSpacerItem::setGeometryInternal(const QRect& value)
+{
+    if (geometry() == value) {
+        return;
+    }
+
+    setGeometry(value);
+    emit geometryChanged(QPrivateSignal{});
 }
