@@ -47,7 +47,7 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
     else if (layoutItem) {
         if constexpr (std::is_same_v<Layout, ZGridLayout>) {
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+              qmlAttachedPropertiesObject<ZLayoutAttached>(layoutItem, false));
             assert(layoutAtt);
             layout->addItem(layoutItem,
                             layoutAtt->row(),
@@ -73,7 +73,7 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
         auto* childLayout{ qobject_cast<QLayout*>(object) };
         if constexpr (std::is_same_v<Layout, ZGridLayout>) {
             auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+              qmlAttachedPropertiesObject<ZLayoutAttached>(childLayout, false));
             assert(layoutAtt);
             layout->addLayout(childLayout,
                               layoutAtt->row(),

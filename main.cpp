@@ -25,6 +25,7 @@
 #include <QFontDialog>
 #include <QFileDialog>
 #include <QCommandLinkButton>
+#include <QDial>
 
 int main(int argc, char* argv[])
 {
@@ -69,6 +70,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<QKeySequenceEdit>("Qml.Widgets", 1, 0, "KeySequenceEdit");
     qmlRegisterType<QCommandLinkButton>(
       "Qml.Widgets", 1, 0, "CommandLinkButton");
+    qmlRegisterType<QDial>("Qml.Widgets", 1, 0, "Dial");
 
     qmlRegisterType<QErrorMessage>("Qml.Widgets.Dialogs", 1, 0, "ErrorMessage");
     qmlRegisterType<QMessageBox>("Qml.Widgets.Dialogs", 1, 0, "MessageBox");

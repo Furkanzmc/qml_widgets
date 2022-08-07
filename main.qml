@@ -24,27 +24,13 @@ Widget {
             }
 
             PushButton {
-                text: "Buttons Gallery"
+                text: "Widgets Gallery"
 
-                property ButtonsGallery window
-
-                onClicked: {
-                    if (!window) {
-                        window = cmpButtonsGallery.createObject(root)
-                    }
-
-                    window.visible = true
-                }
-            }
-
-            PushButton {
-                text: "Text Editing Gallery"
-
-                property TextEditingGallery window
+                property WidgetsGallery window
 
                 onClicked: {
                     if (!window) {
-                        window = cmpTextEditingGallery.createObject(root)
+                        window = cmpWidgetsGallery.createObject(root)
                     }
 
                     window.visible = true
@@ -62,75 +48,6 @@ Widget {
                     }
 
                     window.visible = true
-                }
-            }
-        }
-
-        GroupBox {
-            title: "Group A"
-
-            FormLayout {
-                PushButton {
-                    text: "One"
-                    onClicked: {
-                        console.log("[main.qml::14::onClicked]", text)
-                    }
-                }
-
-                PushButton {
-                    text: "One"
-                    onClicked: {
-                        console.log("[main.qml::14::onClicked]", text)
-                    }
-                }
-
-                PushButton {
-                    text: "Three"
-                    onClicked: {
-                        console.log("[main.qml::14::onClicked]", text)
-                    }
-                }
-
-                Slider {
-                    id: slider
-                    maximum: 100
-                    minimum: 0
-                    orientation: Qt.Horizontal
-                    value: spinBox.value
-                }
-
-                SpinBox {
-                    id: spinBox
-                    value: slider.value
-                }
-
-                ProgressBar {
-                    minimum: 0
-                    maximum: 100
-                    value: slider.value
-                }
-
-                HBoxLayout {
-                    PushButton {
-                        text: "Four"
-                        onClicked: {
-                            console.log("[main.qml::14::onClicked]", text)
-                        }
-                    }
-
-                    PushButton {
-                        text: "Five"
-                        onClicked: {
-                            console.log("[main.qml::14::onClicked]", text)
-                        }
-                    }
-
-                    PushButton {
-                        text: "Six"
-                        onClicked: {
-                            console.log("[main.qml::14::onClicked]", text)
-                        }
-                    }
                 }
             }
         }
@@ -225,15 +142,9 @@ Widget {
     }
 
     Component {
-        id: cmpButtonsGallery
+        id: cmpWidgetsGallery
 
-        ButtonsGallery { }
-    }
-
-    Component {
-        id: cmpTextEditingGallery
-
-        TextEditingGallery { }
+        WidgetsGallery { }
     }
 
     Component {

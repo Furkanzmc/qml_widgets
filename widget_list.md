@@ -32,7 +32,7 @@
 - [x] QFontDialog
 - [ ] QFontComboBox
 - [x] QFileDialog
-- [ ] QErrorMessage
+- [x] QErrorMessage
 - [ ] QDoubleSpinBox
 - [ ] QDialogButtonBox
 - [-] QDialog
