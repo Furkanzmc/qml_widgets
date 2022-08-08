@@ -54,6 +54,8 @@ int main(int argc, char* argv[])
     qmlRegisterUncreatableType<ZLayoutAttached>(
       "Qml.Widgets", 1, 0, "Layout", "Cannot create from QML.");
     qmlRegisterType<ZSpacerItem>("Qml.Widgets", 1, 0, "Spacer");
+    qmlRegisterUncreatableType<QSizePolicy>(
+      "Qml.Widgets", 1, 0, "SizePolicy", "Cannot create from QML.");
 
     qmlRegisterType<QLabel>("Qml.Widgets", 1, 0, "Label");
     qmlRegisterType<QPushButton>("Qml.Widgets", 1, 0, "PushButton");

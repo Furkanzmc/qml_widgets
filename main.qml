@@ -50,86 +50,18 @@ Widget {
                     window.visible = true
                 }
             }
-        }
 
-        VBoxLayout {
-            GroupBox {
-                title: "StackLayout"
+            PushButton {
+                text: "Layouts Gallery"
 
-                StackLayout {
-                    id: sl
+                property LayoutsGallery window
 
-                    Widget {
-                        VBoxLayout {
-                            Label {
-                                text: "Page 1"
-                            }
-
-                            PushButton {
-                                text: "Go to Page 2"
-                                onClicked: {
-                                    sl.currentIndex = 1
-                                }
-                            }
-                        }
+                onClicked: {
+                    if (!window) {
+                        window = cmpLayouts.createObject(root)
                     }
 
-                    Widget {
-                        VBoxLayout {
-                            Label {
-                                text: "Page 2"
-                            }
-
-                            PushButton {
-                                text: "Go to Page 1"
-                                onClicked: {
-                                    sl.currentIndex = 0
-                                }
-                            }
-
-                        }
-                    }
-                }
-            }
-
-            VBoxLayout {
-
-                Label {
-                    text: "StackWidget"
-                }
-
-                StackWidget {
-                    id: sw
-
-                    Widget {
-                        VBoxLayout {
-                            Label {
-                                text: "Page 1"
-                            }
-
-                            PushButton {
-                                text: "Go to Page 2"
-                                onClicked: {
-                                    sw.currentIndex = 1
-                                }
-                            }
-                        }
-                    }
-
-                    Widget {
-                        VBoxLayout {
-                            Label {
-                                text: "Page 2"
-                            }
-
-                            PushButton {
-                                text: "Go to Page 1"
-                                onClicked: {
-                                    sw.currentIndex = 0
-                                }
-                            }
-                        }
-                    }
+                    window.visible = true
                 }
             }
         }
@@ -151,5 +83,11 @@ Widget {
         id: cmpDialogs
 
         DialogsGallery { }
+    }
+
+    Component {
+        id: cmpLayouts
+
+        LayoutsGallery { }
     }
 }

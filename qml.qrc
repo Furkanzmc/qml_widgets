@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>WidgetsGallery.qml</file>
         <file>Calculator.qml</file>
+        <file>LayoutsGallery.qml</file>
     </qresource>
 </RCC>

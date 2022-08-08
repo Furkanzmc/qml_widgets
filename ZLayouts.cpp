@@ -492,7 +492,7 @@ void ZSpacerItem::setVerticalSizePolicy(QSizePolicy::Policy policy)
     const auto oldMinSize{ minimumSize() };
     const auto oldMaxSize{ maximumSize() };
 
-    changeSize(width(), height(), policy, sizePolicy().verticalPolicy());
+    changeSize(width(), height(), sizePolicy().horizontalPolicy(), policy);
     emit verticalSizePolicyChanged(QPrivateSignal{});
 
     if (oldExpDirection != expandingDirections()) {
