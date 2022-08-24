@@ -201,6 +201,10 @@ Widget {
                             Label {
                                 text: "Page 2"
                             }
+
+                            PushButton {
+                                text: "Button"
+                            }
                         }
                     }
                 }
