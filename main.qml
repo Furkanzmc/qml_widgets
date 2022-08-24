@@ -1,5 +1,6 @@
 import Qml.Widgets
 import Qml.Widgets.Window
+import Qml.Widgets.Dialogs
 import QtQml 2.15
 
 MainWindow {
@@ -37,6 +38,24 @@ MainWindow {
                 text: "Layouts Gallery"
                 onTriggered: {
                     layouts.open()
+                }
+            }
+        }
+
+        Menu {
+            title: "Help"
+
+            Action {
+                property MessageBox aboutBox: MessageBox {
+                    text: "This is a sample QWidgets application using QML."
+                    detailedText: "This message box is created from QML."
+                    icon: MessageBox.Information
+                    standardButtons: MessageBox.Close
+                }
+
+                text: "About QML Widgets"
+                onTriggered: {
+                    aboutBox.open()
                 }
             }
         }
