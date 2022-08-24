@@ -8,6 +8,7 @@
 #include <QStackedLayout>
 #include <QStackedWidget>
 #include <QSpacerItem>
+#include <QToolBox>
 
 #include <QWidget>
 #include <qqml.h>
@@ -108,6 +109,22 @@ public:
     QQmlListProperty<QObject> data();
 };
 
+class ZToolBox : public QToolBox {
+    Q_OBJECT
+
+    Q_CLASSINFO("DefaultProperty", "data")
+    Q_CLASSINFO("ParentProperty", "parent")
+    QML_NAMED_ELEMENT(StackedLayout)
+
+    Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
+    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+
+public:
+    explicit ZToolBox(QWidget* parent = nullptr);
+
+    QQmlListProperty<QObject> data();
+};
+
 class ZLayoutAttached : public QObject {
     Q_OBJECT
 
@@ -137,6 +154,9 @@ class ZLayoutAttached : public QObject {
 
     // Only used with ZFormLayout
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
+
+    // Alias to label so we can use it for ZToolBox
+    Q_PROPERTY(QString title READ label WRITE setLabel NOTIFY labelChanged)
 
 public:
     ZLayoutAttached(QObject* parent);

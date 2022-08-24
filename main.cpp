@@ -1,6 +1,7 @@
 #include "ZWidget.h"
 #include "ZLayouts.h"
 #include "ZGroupBox.h"
+#include "ZInputDialog.h"
 
 #include <QGuiApplication>
 #include <QApplication>
@@ -37,8 +38,7 @@ int main(int argc, char* argv[])
 
     QQmlApplicationEngine engine;
 
-    const QUrl url(
-      "/Users/furkanzmc/Development/playground/qml_widget/main.qml");
+    const QUrl url{ "/Users/furkanzmc/Development/github/qml_widget/main.qml" };
 
     qmlRegisterAnonymousType<QLayout>("Qml.Widgets", 1);
     qmlRegisterType<ZWidget>("Qml.Widgets", 1, 0, "Widget");
@@ -56,6 +56,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<ZSpacerItem>("Qml.Widgets", 1, 0, "Spacer");
     qmlRegisterUncreatableType<QSizePolicy>(
       "Qml.Widgets", 1, 0, "SizePolicy", "Cannot create from QML.");
+    qmlRegisterType<ZToolBox>("Qml.Widgets", 1, 0, "ToolBox");
 
     qmlRegisterType<QLabel>("Qml.Widgets", 1, 0, "Label");
     qmlRegisterType<QPushButton>("Qml.Widgets", 1, 0, "PushButton");
@@ -79,6 +80,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<QColorDialog>("Qml.Widgets.Dialogs", 1, 0, "ColorDialog");
     qmlRegisterType<QFontDialog>("Qml.Widgets.Dialogs", 1, 0, "FontDialog");
     qmlRegisterType<QFileDialog>("Qml.Widgets.Dialogs", 1, 0, "FileDialog");
+    qmlRegisterType<ZInputDialog>("Qml.Widgets.Dialogs", 1, 0, "InputDialog");
 
     QObject::connect(
       &engine,

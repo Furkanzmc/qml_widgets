@@ -176,5 +176,35 @@ Widget {
                 }
             }
         }
+
+        GroupBox {
+            title: "ToolBox"
+            Layout.column: 2
+            Layout.row: 1
+
+            VBoxLayout {
+                ToolBox {
+                    Widget {
+                        Layout.label: "Page 1"
+
+                        VBoxLayout {
+                            Label {
+                                text: "Page 1"
+                            }
+                        }
+                    }
+
+                    Widget {
+                        Layout.label: "Page 2"
+
+                        VBoxLayout {
+                            Label {
+                                text: "Page 2"
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

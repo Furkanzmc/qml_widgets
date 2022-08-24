@@ -33,6 +33,7 @@ set(PROJECT_SOURCES
         ZWidget.cpp
         ZLayouts.cpp
         ZGroupBox.cpp
+        ZInputDialog.cpp
         qml.qrc
 )
 

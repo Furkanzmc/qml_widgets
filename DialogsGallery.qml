@@ -43,6 +43,27 @@ Widget {
                 errMsg.showMessage("Here's an error message.", "Here's a type.")
             }
         }
+
+        PushButton {
+            text: "Text Input Dialog"
+            onClicked: {
+                textInputDlg.open()
+            }
+        }
+
+        PushButton {
+            text: "Int Input Dialog"
+            onClicked: {
+                intInputDlg.open()
+            }
+        }
+
+        PushButton {
+            text: "Double Input Dialog"
+            onClicked: {
+                doubleInputDlg.open()
+            }
+        }
     }
 
     ErrorMessage {
@@ -66,5 +87,32 @@ Widget {
 
     FileDialog {
         id: fileDlg
+    }
+
+    InputDialog {
+        id: textInputDlg
+        windowTitle: "User Name"
+        inputMode: InputDialog.TextInput
+        onTextValueChanged: {
+            console.log("[DialogsGallery.qml::84::onTextValueChanged]", textValue)
+        }
+    }
+
+    InputDialog {
+        id: intInputDlg
+        windowTitle: "User Age"
+        inputMode: InputDialog.IntInput
+        onIntValueChanged: {
+            console.log("[DialogsGallery.qml::92::onIntValueChanged]", intValue)
+        }
+    }
+
+    InputDialog {
+        id: doubleInputDlg
+        windowTitle: "Ratio"
+        inputMode: InputDialog.DoubleInput
+        onDoubleValueChanged: {
+            console.log("[DialogsGallery.qml::115::onDoubleValueChanged]", doubleValue)
+        }
     }
 }

@@ -40,6 +40,12 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
                               layoutAtt->columnSpan(),
                               layoutAtt->alignment());
         }
+        else if constexpr (std::is_same_v<Layout, ZToolBox>) {
+            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
+              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+            assert(layoutAtt);
+            layout->addItem(widget, layoutAtt->label());
+        }
         else {
             layout->addWidget(widget);
         }
@@ -65,7 +71,7 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
         else if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
             assert("Cannot add spacer to ZStackedWidget." == 0);
         }
-        else {
+        else if constexpr (!std::is_same_v<Layout, ZToolBox>) {
             layout->addSpacerItem(dynamic_cast<QSpacerItem*>(layoutItem));
         }
     }
@@ -86,7 +92,8 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
             layout->addRow(childLayout);
         }
         else if constexpr (!std::is_same_v<Layout, ZStackedLayout> &&
-                           !std::is_same_v<Layout, ZStackedWidget>) {
+                           !std::is_same_v<Layout, ZStackedWidget> &&
+                           !std::is_same_v<Layout, ZToolBox>) {
             layout->addLayout(childLayout);
         }
         else {
@@ -109,6 +116,9 @@ QObject* dataAt(QQmlListProperty<QObject>* prop, qsizetype i)
     auto* layout{ static_cast<Layout*>(prop->object) };
     assert(layout);
     if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
+        return layout->widget(i);
+    }
+    else if constexpr (std::is_same_v<Layout, ZToolBox>) {
         return layout->widget(i);
     }
     else {
@@ -213,6 +223,21 @@ QQmlListProperty<QObject> ZStackedWidget::data()
                                      dataCount<ZStackedWidget>,
                                      dataAt<ZStackedWidget>,
                                      dataClear<ZStackedWidget>);
+}
+
+ZToolBox::ZToolBox(QWidget* parent)
+  : QToolBox{ parent }
+{
+}
+
+QQmlListProperty<QObject> ZToolBox::data()
+{
+    return QQmlListProperty<QObject>(this,
+                                     nullptr,
+                                     dataAppend<ZToolBox>,
+                                     dataCount<ZToolBox>,
+                                     dataAt<ZToolBox>,
+                                     dataClear<ZToolBox>);
 }
 
 ZLayoutAttached::ZLayoutAttached(QObject* parent)
