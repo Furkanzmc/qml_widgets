@@ -1,11 +1,22 @@
 import Qml.Widgets
+import Qml.Widgets.Window
 import QtQml 2.15
 
-Widget {
+MainWindow {
     id: root
     height: 200
     visible: true
     windowTitle: "QML QWidget Gallery"
+
+    MenuBar {
+        Menu {
+            title: "File"
+
+            Action {
+                text: "Exit"
+            }
+        }
+    }
 
     HBoxLayout {
         VBoxLayout {

@@ -34,6 +34,8 @@ set(PROJECT_SOURCES
         ZLayouts.cpp
         ZGroupBox.cpp
         ZInputDialog.cpp
+        ZMenuBar.cpp
+        ZMainWindow.cpp
         qml.qrc
 )
 

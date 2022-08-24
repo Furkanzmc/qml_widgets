@@ -41,20 +41,24 @@
 - [ ] QDialogButtonBox
 - [-] QDialog
 > This is the base class for other dialogs. No need to expose it.
-- [ ] QDial
+- [x] QDial
 - [ ] QDateTimeEdit
 - [ ] QDateEdit
 - [x] QCommandLinkButton
 - [x] QColorDialog
 - [x] QCheckBox
 - [ ] QButtonGroup
+- [x] QToolBox
+- [ ] QStatusBar
+- [ ] QComboBox
+- [ ] QSplitter
+- [ ] QSplitterHandle
 
 # Hard to Port
 
 - [ ] QAccessibleWidget
 - [ ] QCalendarWidget
 - [ ] QColumnView
-- [ ] QComboBox
 - [ ] QCompleter
 - [ ] QDataWidgetMapper
 - [ ] QDockWidget
@@ -85,10 +89,7 @@
 - [ ] QSizePolicy
 - [ ] QSpacerItem
 - [ ] QSplashScreen
-- [ ] QSplitter
-- [ ] QSplitterHandle
 - [ ] QStandardItemEditorCreator
-- [ ] QStatusBar
 - [ ] QSwipeGesture
 - [ ] QSystemTrayIcon
 - [ ] QTabBar
@@ -103,7 +104,6 @@
 - [ ] QTileRules
 - [ ] QTimeEdit
 - [ ] QToolBar
-- [x] QToolBox
 - [ ] QToolTip
 - [ ] QTreeView
 - [ ] QTreeWidget

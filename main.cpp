@@ -2,6 +2,8 @@
 #include "ZLayouts.h"
 #include "ZGroupBox.h"
 #include "ZInputDialog.h"
+#include "ZMainWindow.h"
+#include "ZMenuBar.h"
 
 #include <QGuiApplication>
 #include <QApplication>
@@ -21,12 +23,12 @@
 #include <QSpinBox>
 #include <QSlider>
 #include <QProgressBar>
-#include <QMainWindow>
 #include <QKeySequenceEdit>
 #include <QFontDialog>
 #include <QFileDialog>
 #include <QCommandLinkButton>
 #include <QDial>
+#include <QAction>
 
 int main(int argc, char* argv[])
 {
@@ -42,6 +44,7 @@ int main(int argc, char* argv[])
 
     qmlRegisterAnonymousType<QLayout>("Qml.Widgets", 1);
     qmlRegisterType<ZWidget>("Qml.Widgets", 1, 0, "Widget");
+    qmlRegisterType<QAction>("Qml.Widgets", 1, 0, "Action");
 
     // Layouts
     qmlRegisterType<ZVBoxLayout>("Qml.Widgets", 1, 0, "VBoxLayout");
@@ -69,11 +72,12 @@ int main(int argc, char* argv[])
     qmlRegisterType<QSpinBox>("Qml.Widgets", 1, 0, "SpinBox");
     qmlRegisterType<QSlider>("Qml.Widgets", 1, 0, "Slider");
     qmlRegisterType<QProgressBar>("Qml.Widgets", 1, 0, "ProgressBar");
-    qmlRegisterType<QMainWindow>("Qml.Widgets", 1, 0, "QMainWindow");
     qmlRegisterType<QKeySequenceEdit>("Qml.Widgets", 1, 0, "KeySequenceEdit");
     qmlRegisterType<QCommandLinkButton>(
       "Qml.Widgets", 1, 0, "CommandLinkButton");
     qmlRegisterType<QDial>("Qml.Widgets", 1, 0, "Dial");
+    qmlRegisterType<ZMenuBar>("Qml.Widgets", 1, 0, "MenuBar");
+    qmlRegisterType<ZMenu>("Qml.Widgets", 1, 0, "Menu");
 
     qmlRegisterType<QErrorMessage>("Qml.Widgets.Dialogs", 1, 0, "ErrorMessage");
     qmlRegisterType<QMessageBox>("Qml.Widgets.Dialogs", 1, 0, "MessageBox");
@@ -81,6 +85,7 @@ int main(int argc, char* argv[])
     qmlRegisterType<QFontDialog>("Qml.Widgets.Dialogs", 1, 0, "FontDialog");
     qmlRegisterType<QFileDialog>("Qml.Widgets.Dialogs", 1, 0, "FileDialog");
     qmlRegisterType<ZInputDialog>("Qml.Widgets.Dialogs", 1, 0, "InputDialog");
+    qmlRegisterType<ZMainWindow>("Qml.Widgets.Window", 1, 0, "MainWindow");
 
     QObject::connect(
       &engine,
