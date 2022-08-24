@@ -5,7 +5,7 @@ Widget {
     id: root
     height: 200
     visible: true
-    windowTitle: "Buttons Gallery"
+    windowTitle: "Dialogs Gallery"
 
     VBoxLayout {
         PushButton {

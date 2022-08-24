@@ -25,15 +25,16 @@
 - [x] QProgressBar
 - [x] QPushButton
 - [x] QMessageBox
-- [ ] QMenuBar
-- [ ] QMenu
-- [ ] QMainWindow
+- [x] QMenuBar
+- [x] QMenu
+- [x] QMainWindow
 - [x] QLineEdit
 - [x] QLabel
 - [x] QKeySequenceEdit
 - [x] QInputDialog
 - [x] QGroupBox
 - [x] QFontDialog
+- [x] QAction
 - [ ] QFontComboBox
 - [x] QFileDialog
 - [x] QErrorMessage

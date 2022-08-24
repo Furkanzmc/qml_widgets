@@ -4,7 +4,7 @@ Widget {
     id: root
     height: 200
     visible: true
-    windowTitle: "Widgets Gallery"
+    windowTitle: "Layouts Gallery"
 
     GridLayout {
         GroupBox {

@@ -10,10 +10,34 @@ MainWindow {
 
     MenuBar {
         Menu {
-            title: "File"
+            title: "Demos"
 
             Action {
-                text: "Exit"
+                text: "Calculator"
+                onTriggered: {
+                    calculator.open()
+                }
+            }
+
+            Action {
+                text: "Widgets Gallery"
+                onTriggered: {
+                    widgets.open()
+                }
+            }
+
+            Action {
+                text: "Dialogs Gallery"
+                onTriggered: {
+                    dialogs.open()
+                }
+            }
+
+            Action {
+                text: "Layouts Gallery"
+                onTriggered: {
+                    layouts.open()
+                }
             }
         }
     }
@@ -21,11 +45,17 @@ MainWindow {
     HBoxLayout {
         VBoxLayout {
             PushButton {
+                id: calculator
+
                 text: "Calculator"
 
                 property Calculator window
 
                 onClicked: {
+                    open()
+                }
+
+                function open() {
                     if (!window) {
                         window = cmpCalculator.createObject(root)
                     }
@@ -35,11 +65,16 @@ MainWindow {
             }
 
             PushButton {
+                id: widgets
                 text: "Widgets Gallery"
 
                 property WidgetsGallery window
 
                 onClicked: {
+                    open()
+                }
+
+                function open() {
                     if (!window) {
                         window = cmpWidgetsGallery.createObject(root)
                     }
@@ -49,11 +84,16 @@ MainWindow {
             }
 
             PushButton {
+                id: dialogs
                 text: "Dialogs Gallery"
 
                 property DialogsGallery window
 
                 onClicked: {
+                    open()
+                }
+
+                function open() {
                     if (!window) {
                         window = cmpDialogs.createObject(root)
                     }
@@ -63,11 +103,16 @@ MainWindow {
             }
 
             PushButton {
+                id: layouts
                 text: "Layouts Gallery"
 
                 property LayoutsGallery window
 
                 onClicked: {
+                    open()
+                }
+
+                function open() {
                     if (!window) {
                         window = cmpLayouts.createObject(root)
                     }
