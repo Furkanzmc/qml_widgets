@@ -1,4 +1,5 @@
 import Qml.Widgets
+import Qml.Widgets.Models
 
 Widget {
     id: root
@@ -142,6 +143,48 @@ Widget {
 
                 KeySequenceEdit {
                     Layout.label: "Shortcut"
+                }
+            }
+        }
+
+        GroupBox {
+            title: "Pickers"
+            Layout.column: 1
+            Layout.row: 1
+
+            FormLayout {
+                labelAlignment: Qt.AlignLeft
+
+                DateEdit {
+                    calendarPopup: true
+                    Layout.label: "Date"
+                }
+
+                DateTimeEdit {
+                    Layout.label: "Date Time"
+                }
+
+                FontComboBox {
+                    Layout.label: "Font"
+                    onCurrentFontChanged: {
+                        console.log("[WidgetsGallery.qml::169::onCurrentFontChanged]", currentFont)
+                    }
+                }
+
+                DoubleSpinBox {
+                    Layout.label: "Ratio"
+                    onValueChanged: {
+                        console.log("[WidgetsGallery.qml::176::onValueChanged]", value)
+                    }
+                }
+
+                ComboBox {
+                    model: ListModel {
+                        ListElement {
+                            text: "One"
+                        }
+                    }
+                    Layout.label: "Items"
                 }
             }
         }

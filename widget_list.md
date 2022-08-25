@@ -35,23 +35,23 @@
 - [x] QGroupBox
 - [x] QFontDialog
 - [x] QAction
-- [ ] QFontComboBox
 - [x] QFileDialog
 - [x] QErrorMessage
-- [ ] QDoubleSpinBox
+- [x] QDateTimeEdit
+- [x] QDateEdit
+- [x] QFontComboBox
+- [x] QDoubleSpinBox
+- [ ] QComboBox
 - [ ] QDialogButtonBox
 - [-] QDialog
 > This is the base class for other dialogs. No need to expose it.
 - [x] QDial
-- [ ] QDateTimeEdit
-- [ ] QDateEdit
 - [x] QCommandLinkButton
 - [x] QColorDialog
 - [x] QCheckBox
 - [ ] QButtonGroup
 - [x] QToolBox
 - [ ] QStatusBar
-- [ ] QComboBox
 - [ ] QSplitter
 - [ ] QSplitterHandle
 
