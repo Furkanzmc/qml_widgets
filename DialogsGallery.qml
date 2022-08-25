@@ -64,6 +64,13 @@ Widget {
                 doubleInputDlg.open()
             }
         }
+
+        PushButton {
+            text: "ComboBox Input Dialog"
+            onClicked: {
+                itemsInputDlg.open()
+            }
+        }
     }
 
     ErrorMessage {
@@ -113,6 +120,16 @@ Widget {
         inputMode: InputDialog.DoubleInput
         onDoubleValueChanged: {
             console.log("[DialogsGallery.qml::115::onDoubleValueChanged]", doubleValue)
+        }
+    }
+
+    InputDialog {
+        id: itemsInputDlg
+        windowTitle: "4 Seasons"
+        comboBoxItems: ["Autumn", "Spring", "Winter", "Summer"]
+        inputMode: InputDialog.TextInput
+        onTextValueChanged: {
+            console.log("[DialogsGallery.qml::132::onTextValueChanged]", textValue)
         }
     }
 }
