@@ -9,7 +9,7 @@ class ZWidget : public QWidget {
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(ZWidget)
+    QML_NAMED_ELEMENT(Widget)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
     Q_PROPERTY(QObject* parent READ parent WRITE setParentInternal NOTIFY

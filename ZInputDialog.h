@@ -2,9 +2,13 @@
 #define ZINPUT_DIALOG_H
 
 #include <QInputDialog>
+#include <qqml.h>
 
 class ZInputDialog : public QInputDialog {
     Q_OBJECT
+
+    Q_CLASSINFO("ParentProperty", "parent")
+    QML_NAMED_ELEMENT(InputDialog)
 
     Q_PROPERTY(InputMode inputMode READ inputMode WRITE setInputMode NOTIFY
                  inputModeChanged)
