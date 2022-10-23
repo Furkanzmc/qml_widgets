@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 
     QQmlApplicationEngine engine;
 
-    const QUrl url{ "/Users/furkanzmc/Development/github/qml_widget/main.qml" };
+    const QUrl url{ "/Users/furkanzmc/Development/github/qml_widgets/main.qml" };
 
     qmlRegisterAnonymousType<QLayout>("Qml.Widgets", 1);
     qmlRegisterType<ZWidget>("Qml.Widgets", 1, 0, "Widget");
@@ -76,7 +76,7 @@ int main(int argc, char* argv[])
 
     // Straight Ports
     qmlRegisterUncreatableType<QSizePolicy>(
-      "Qml.Widgets", 1, 0, "sizePolicy", "Cannot create from QML.");
+      "Qml.Widgets", 1, 0, "SizePolicy", "Cannot create from QML.");
 
     qmlRegisterType<QLabel>("Qml.Widgets", 1, 0, "Label");
     qmlRegisterType<QPushButton>("Qml.Widgets", 1, 0, "PushButton");

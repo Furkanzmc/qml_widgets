@@ -180,9 +180,9 @@ Widget {
 
                 ComboBox {
                     model: ListModel {
-                        ListElement {
-                            text: "One"
-                        }
+                        // ListElement {
+                        //     text: "One"
+                        // }
                     }
                     Layout.label: "Items"
                 }
