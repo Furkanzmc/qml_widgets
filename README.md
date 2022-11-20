@@ -1,0 +1,193 @@
+## Supported Types
+
+- [ ] QAbstractButton
+- [ ] QAbstractGraphicsShapeItem
+- [ ] QAbstractItemDelegate
+- [ ] QAbstractItemView
+- [ ] QAbstractScrollArea
+- [ ] QAbstractSlider
+- [ ] QAbstractSpinBox
+- [ ] QAccessibleWidget
+- [ ] QApplication
+- [ ] QBoxLayout
+- [ ] QButtonGroup
+- [ ] QCalendarWidget
+- [x] QCheckBox
+- [x] QColorDialog
+- [ ] QColormap
+- [ ] QColumnView
+- [@] QComboBox
+- [x] QCommandLinkButton
+- [ ] QCommonStyle
+- [ ] QCompleter
+- [ ] QDataWidgetMapper
+- [x] QDateEdit
+- [x] QDateTimeEdit
+- [x] QDial
+- [ ] QDialog
+- [ ] QDialogButtonBox
+- [ ] QDockWidget
+- [x] QDoubleSpinBox
+- [x] QErrorMessage
+- [x] QFileDialog
+- [ ] QFileIconProvider
+- [ ] QFocusFrame
+- [x] QFontComboBox
+- [x] QFontDialog
+- [x] QFormLayout
+- [ ] QFrame
+- [ ] QGesture
+- [ ] QGestureEvent
+- [ ] QGestureRecognizer
+- [ ] QGraphicsAnchor
+- [ ] QGraphicsAnchorLayout
+- [ ] QGraphicsBlurEffect
+- [ ] QGraphicsColorizeEffect
+- [ ] QGraphicsDropShadowEffect
+- [ ] QGraphicsEffect
+- [ ] QGraphicsEllipseItem
+- [ ] QGraphicsGridLayout
+- [ ] QGraphicsItem
+- [ ] QGraphicsItemGroup
+- [ ] QGraphicsLayout
+- [ ] QGraphicsLayoutItem
+- [ ] QGraphicsLineItem
+- [ ] QGraphicsLinearLayout
+- [ ] QGraphicsObject
+- [ ] QGraphicsOpacityEffect
+- [ ] QGraphicsPathItem
+- [ ] QGraphicsPixmapItem
+- [ ] QGraphicsPolygonItem
+- [ ] QGraphicsProxyWidget
+- [ ] QGraphicsRectItem
+- [ ] QGraphicsRotation
+- [ ] QGraphicsScale
+- [ ] QGraphicsScene
+- [ ] QGraphicsSceneContextMenuEvent
+- [ ] QGraphicsSceneDragDropEvent
+- [ ] QGraphicsSceneEvent
+- [ ] QGraphicsSceneHelpEvent
+- [ ] QGraphicsSceneHoverEvent
+- [ ] QGraphicsSceneMouseEvent
+- [ ] QGraphicsSceneMoveEvent
+- [ ] QGraphicsSceneResizeEvent
+- [ ] QGraphicsSceneWheelEvent
+- [ ] QGraphicsSimpleTextItem
+- [ ] QGraphicsTextItem
+- [ ] QGraphicsTransform
+- [ ] QGraphicsView
+- [ ] QGraphicsWidget
+- [x] QGridLayout
+- [x] QGroupBox
+- [x] QHBoxLayout
+- [ ] QHeaderView
+- [ ] QInputDialog
+- [ ] QItemDelegate
+- [ ] QItemEditorCreator
+- [ ] QItemEditorCreatorBase
+- [ ] QItemEditorFactory
+- [x] QKeySequenceEdit
+- [ ] QLCDNumber
+- [x] QLabel
+- [ ] QLayout
+- [ ] QLayoutItem
+- [x] QLineEdit
+- [ ] QListView
+- [ ] QListWidget
+- [ ] QListWidgetItem
+- [ ] QMainWindow
+- [ ] QMdiArea
+- [ ] QMdiSubWindow
+- [x] QMenu
+- [x] QMenuBar
+- [x] QMessageBox
+- [ ] QPanGesture
+- [ ] QPinchGesture
+- [ ] QPlainTextDocumentLayout
+- [x] QPlainTextEdit
+- [x] QProgressBar
+- [ ] QProgressDialog
+- [ ] QProxyStyle
+- [x] QPushButton
+- [x] QRadioButton
+- [ ] QRubberBand
+- [ ] QScrollArea
+- [ ] QScrollBar
+- [ ] QScroller
+- [ ] QScrollerProperties
+- [ ] QSizeGrip
+- [x] QSizePolicy
+> Exposed an `enum` to QML.
+- [x] QSlider
+- [x] QSpacerItem
+- [x] QSpinBox
+- [ ] QSplashScreen
+- [ ] QSplitter
+- [ ] QSplitterHandle
+- [x] QStackedLayout
+- [x] QStackedWidget
+- [ ] QStandardItemEditorCreator
+- [ ] QStatusBar
+- [ ] QStyle
+- [ ] QStyleFactory
+- [ ] QStyleHintReturn
+- [ ] QStyleHintReturnMask
+- [ ] QStyleHintReturnVariant
+- [ ] QStyleOption
+- [ ] QStyleOptionButton
+- [ ] QStyleOptionComboBox
+- [ ] QStyleOptionComplex
+- [ ] QStyleOptionDockWidget
+- [ ] QStyleOptionFocusRect
+- [ ] QStyleOptionFrame
+- [ ] QStyleOptionGraphicsItem
+- [ ] QStyleOptionGroupBox
+- [ ] QStyleOptionHeader
+- [ ] QStyleOptionHeaderV2
+- [ ] QStyleOptionMenuItem
+- [ ] QStyleOptionProgressBar
+- [ ] QStyleOptionRubberBand
+- [ ] QStyleOptionSizeGrip
+- [ ] QStyleOptionSlider
+- [ ] QStyleOptionSpinBox
+- [ ] QStyleOptionTab
+- [ ] QStyleOptionTabBarBase
+- [ ] QStyleOptionTabWidgetFrame
+- [ ] QStyleOptionTitleBar
+- [ ] QStyleOptionToolBar
+- [ ] QStyleOptionToolBox
+- [ ] QStyleOptionToolButton
+- [ ] QStyleOptionViewItem
+- [ ] QStylePainter
+- [ ] QStylePlugin
+- [ ] QStyledItemDelegate
+- [ ] QSwipeGesture
+- [ ] QSystemTrayIcon
+- [ ] QTabBar
+- [ ] QTabWidget
+- [ ] QTableView
+- [ ] QTableWidget
+- [ ] QTableWidgetItem
+- [ ] QTableWidgetSelectionRange
+- [ ] QTapAndHoldGesture
+- [ ] QTapGesture
+- [ ] QTextBrowser
+- [x] QTextEdit
+- [ ] QTileRules
+- [ ] QTimeEdit
+- [ ] QToolBar
+- [x] QToolBox
+- [x] QToolButton
+- [ ] QToolTip
+- [ ] QTreeView
+- [ ] QTreeWidget
+- [ ] QTreeWidgetItem
+- [ ] QTreeWidgetItemIterator
+- [ ] QUndoView
+- [x] QVBoxLayout
+- [ ] QWhatsThis
+- [x] QWidget
+- [ ] QWidgetAction
+- [ ] QWidgetItem
+- [ ] QWizard
+- [ ] QWizardPage

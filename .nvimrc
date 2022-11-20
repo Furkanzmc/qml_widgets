@@ -36,3 +36,5 @@ EOF
 abbreviate build Build
 abbreviate cmake CMake
 abbreviate run Run
+nmap <leader>pr :Run<CR>
+nmap <leader>pb :Build<CR>
