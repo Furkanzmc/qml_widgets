@@ -158,6 +158,8 @@ Widget {
                 DateEdit {
                     calendarPopup: true
                     Layout.label: "Date"
+                    Palette.extends: dsb.Palette
+                    Palette.items: dsb.paletteItems
                 }
 
                 DateTimeEdit {
@@ -172,10 +174,26 @@ Widget {
                 }
 
                 DoubleSpinBox {
-                    Layout.label: "Ratio"
+                    id: dsb
+
+                    readonly property list<PaletteItem> paletteItems: [
+                        PaletteItem {
+                            color: "red"
+                            group: QPalette.Active
+                            role: QPalette.Text
+                        },
+                        PaletteItem {
+                            color: "green"
+                            group: QPalette.Active
+                            role: QPalette.Base
+                        }
+                    ]
+
                     onValueChanged: {
                         console.log("[WidgetsGallery.qml::176::onValueChanged]", value)
                     }
+                    Layout.label: "Ratio"
+                    Palette.items: paletteItems
                 }
 
                 ComboBox {

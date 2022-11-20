@@ -7,6 +7,9 @@
 # TODO
 
 - [ ] React to to changes to Layout attached type.
+- [ ] Support QSS with QML syntax.
+  > Need to figure out how to use the custom QML parser...
+  > [Reference](https://doc.qt.io/qt-6/stylesheet-reference.html)
 
 ## Supported Types
 
@@ -22,29 +25,16 @@
 - [ ] QBoxLayout
 - [ ] QButtonGroup
 - [ ] QCalendarWidget
-- [x] QCheckBox
-- [x] QColorDialog
 - [ ] QColormap
 - [ ] QColumnView
-- [x] QComboBox
-- [x] QCommandLinkButton
 - [ ] QCommonStyle
 - [ ] QCompleter
 - [ ] QDataWidgetMapper
-- [x] QDateEdit
-- [x] QDateTimeEdit
-- [x] QDial
 - [ ] QDialog
 - [ ] QDialogButtonBox
 - [ ] QDockWidget
-- [x] QDoubleSpinBox
-- [x] QErrorMessage
-- [x] QFileDialog
 - [ ] QFileIconProvider
 - [ ] QFocusFrame
-- [x] QFontComboBox
-- [x] QFontDialog
-- [x] QFormLayout
 - [ ] QFrame
 - [ ] QGesture
 - [ ] QGestureEvent
@@ -87,55 +77,36 @@
 - [ ] QGraphicsTransform
 - [ ] QGraphicsView
 - [ ] QGraphicsWidget
-- [x] QGridLayout
-- [x] QGroupBox
-- [x] QHBoxLayout
 - [ ] QHeaderView
 - [ ] QInputDialog
 - [ ] QItemDelegate
 - [ ] QItemEditorCreator
 - [ ] QItemEditorCreatorBase
 - [ ] QItemEditorFactory
-- [x] QKeySequenceEdit
 - [ ] QLCDNumber
-- [x] QLabel
 - [ ] QLayout
 - [ ] QLayoutItem
-- [x] QLineEdit
 - [ ] QListView
 - [ ] QListWidget
 - [ ] QListWidgetItem
 - [ ] QMainWindow
 - [ ] QMdiArea
 - [ ] QMdiSubWindow
-- [x] QMenu
-- [x] QMenuBar
-- [x] QMessageBox
+- [x] QPalette
 - [ ] QPanGesture
 - [ ] QPinchGesture
 - [ ] QPlainTextDocumentLayout
-- [x] QPlainTextEdit
-- [x] QProgressBar
 - [ ] QProgressDialog
 - [ ] QProxyStyle
-- [x] QPushButton
-- [x] QRadioButton
 - [ ] QRubberBand
 - [ ] QScrollArea
 - [ ] QScrollBar
 - [ ] QScroller
 - [ ] QScrollerProperties
 - [ ] QSizeGrip
-- [x] QSizePolicy
-> Exposed an `enum` to QML.
-- [x] QSlider
-- [x] QSpacerItem
-- [x] QSpinBox
 - [ ] QSplashScreen
 - [ ] QSplitter
 - [ ] QSplitterHandle
-- [x] QStackedLayout
-- [x] QStackedWidget
 - [ ] QStandardItemEditorCreator
 - [ ] QStatusBar
 - [ ] QStyle
@@ -182,22 +153,55 @@
 - [ ] QTapAndHoldGesture
 - [ ] QTapGesture
 - [ ] QTextBrowser
-- [x] QTextEdit
 - [ ] QTileRules
 - [ ] QTimeEdit
 - [ ] QToolBar
-- [x] QToolBox
-- [x] QToolButton
 - [ ] QToolTip
 - [ ] QTreeView
 - [ ] QTreeWidget
 - [ ] QTreeWidgetItem
 - [ ] QTreeWidgetItemIterator
 - [ ] QUndoView
-- [x] QVBoxLayout
 - [ ] QWhatsThis
-- [x] QWidget
 - [ ] QWidgetAction
 - [ ] QWidgetItem
 - [ ] QWizard
 - [ ] QWizardPage
+- [x] QCheckBox
+- [x] QColorDialog
+- [x] QComboBox
+- [x] QCommandLinkButton
+- [x] QDateEdit
+- [x] QDateTimeEdit
+- [x] QDial
+- [x] QDoubleSpinBox
+- [x] QErrorMessage
+- [x] QFileDialog
+- [x] QFontComboBox
+- [x] QFontDialog
+- [x] QFormLayout
+- [x] QGridLayout
+- [x] QGroupBox
+- [x] QHBoxLayout
+- [x] QKeySequenceEdit
+- [x] QLabel
+- [x] QLineEdit
+- [x] QMenu
+- [x] QMenuBar
+- [x] QMessageBox
+- [x] QPlainTextEdit
+- [x] QProgressBar
+- [x] QPushButton
+- [x] QRadioButton
+- [x] QSizePolicy
+- [x] QSlider
+- [x] QSpacerItem
+- [x] QSpinBox
+- [x] QStackedLayout
+- [x] QStackedWidget
+- [x] QTextEdit
+- [x] QToolBox
+- [x] QToolButton
+- [x] QVBoxLayout
+- [x] QWidget
+> Exposed an `enum` to QML.

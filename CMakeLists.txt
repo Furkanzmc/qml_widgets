@@ -38,6 +38,7 @@ set(PROJECT_SOURCES
         ZMainWindow.cpp
         ZComboBox.cpp
         ZListModel.cpp
+        ZPalette.cpp
         qml.qrc
 )
 

@@ -4,6 +4,7 @@
 #include "ZLayouts.h"
 #include "ZMainWindow.h"
 #include "ZMenuBar.h"
+#include "ZPalette.h"
 #include "ZWidget.h"
 
 #include <QApplication>
@@ -63,6 +64,11 @@ int main(int argc, char *argv[]) {
   qmlRegisterUncreatableType<ZLayoutAttached>("Qml.Widgets", 1, 0, "Layout",
                                               "Cannot create from QML.");
   qmlRegisterType<ZSpacerItem>("Qml.Widgets", 1, 0, "Spacer");
+  qmlRegisterUncreatableType<ZPaletteAttached>("Qml.Widgets", 1, 0, "Palette",
+                                               "Cannot create from QML.");
+  qmlRegisterType<ZPaletteItem>("Qml.Widgets", 1, 0, "PaletteItem");
+  qmlRegisterUncreatableType<QPalette>("Qml.Widgets", 1, 0, "QPalette",
+                                       "Cannot create from QML.");
 
   qmlRegisterType<ZMenuBar>("Qml.Widgets", 1, 0, "MenuBar");
   qmlRegisterType<ZMenu>("Qml.Widgets", 1, 0, "Menu");
