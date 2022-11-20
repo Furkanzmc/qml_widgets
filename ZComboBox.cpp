@@ -1,16 +1,21 @@
 #include "ZComboBox.h"
 
-ZComboBox::ZComboBox(QWidget* parent)
-  : QComboBox{ parent }
-{
+ZComboBox::ZComboBox(QWidget *parent) : QComboBox{parent} {}
+
+void ZComboBox::setModel(QAbstractItemModel *md) {
+  if (model() == md) {
+    return;
+  }
+
+  QComboBox::setModel(md);
+  emit modelChanged(QPrivateSignal{});
 }
 
-void ZComboBox::setModelInternal(QAbstractItemModel* md)
-{
-    if (model() == md) {
-        return;
-    }
+void ZComboBox::setItemDelegateInternal(QAbstractItemDelegate *dlg) {
+  if (itemDelegate() == dlg) {
+    return;
+  }
 
-    setModel(md);
-    emit modelChanged(QPrivateSignal{});
+  setItemDelegate(dlg);
+  emit itemDelegateChanged(QPrivateSignal{});
 }

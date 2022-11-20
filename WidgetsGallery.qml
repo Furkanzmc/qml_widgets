@@ -1,5 +1,5 @@
+import QtQml.Models
 import Qml.Widgets
-import Qml.Widgets.Models
 
 Widget {
     id: root
@@ -180,10 +180,22 @@ Widget {
 
                 ComboBox {
                     model: ListModel {
-                        // ListElement {
-                        //     text: "One"
-                        // }
+                        ListElement {
+                            text: "One"
+                        }
+
+                        ListElement {
+                            text: "Two"
+                        }
+
+                        ListElement {
+                            text: "Three"
+                        }
                     }
+                    onActivated: (index) => {
+                        console.log("[WidgetsGallery.qml::196::onActivated]", index)
+                    }
+                    itemDelegate: StyledItemDelegate { }
                     Layout.label: "Items"
                 }
             }

@@ -1,3 +1,9 @@
+## Notes
+
+- `Component` type is not available. So can't do things like `Component.onCompleted` or
+  `Component.onDestruction`.
+- Cannot use `required` properties with model/view.
+
 ## Supported Types
 
 - [ ] QAbstractButton
@@ -16,7 +22,7 @@
 - [x] QColorDialog
 - [ ] QColormap
 - [ ] QColumnView
-- [@] QComboBox
+- [x] QComboBox
 - [x] QCommandLinkButton
 - [ ] QCommonStyle
 - [ ] QCompleter
