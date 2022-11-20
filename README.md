@@ -4,6 +4,10 @@
   `Component.onDestruction`.
 - Cannot use `required` properties with model/view.
 
+# TODO
+
+- [ ] React to to changes to Layout attached type.
+
 ## Supported Types
 
 - [ ] QAbstractButton
