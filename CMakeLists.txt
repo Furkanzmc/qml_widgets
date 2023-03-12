@@ -29,16 +29,16 @@ find_package(QT NAMES Qt6 Qt5 COMPONENTS Core Quick Widgets REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Quick Widgets REQUIRED)
 
 set(PROJECT_SOURCES
-        main.cpp
-        ZWidget.cpp
-        ZLayouts.cpp
-        ZGroupBox.cpp
-        ZInputDialog.cpp
-        ZMenuBar.cpp
-        ZMainWindow.cpp
-        ZComboBox.cpp
-        ZListModel.cpp
-        ZPalette.cpp
+        src/main.cpp
+        src/ZWidget.cpp
+        src/ZLayouts.cpp
+        src/ZGroupBox.cpp
+        src/ZInputDialog.cpp
+        src/ZMenuBar.cpp
+        src/ZMainWindow.cpp
+        src/ZComboBox.cpp
+        src/ZListModel.cpp
+        src/ZPalette.cpp
         qml.qrc
 )
 
@@ -64,6 +64,7 @@ target_compile_definitions(qml_widget
 target_link_libraries(qml_widget
     PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick Qt${QT_VERSION_MAJOR}::Widgets)
 include_directories(${Qt${QT_VERSION_MAJOR}Quick_PRIVATE_INCLUDE_DIRS})
+include_directories(./src)
 
 set_target_properties(qml_widget PROPERTIES
     MACOSX_BUNDLE_GUI_IDENTIFIER my.example.com

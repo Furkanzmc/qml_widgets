@@ -1,8 +1,8 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
-        <file>WidgetsGallery.qml</file>
-        <file>Calculator.qml</file>
-        <file>LayoutsGallery.qml</file>
+        <file>qml/main.qml</file>
+        <file>qml/WidgetsGallery.qml</file>
+        <file>qml/Calculator.qml</file>
+        <file>qml/LayoutsGallery.qml</file>
     </qresource>
 </RCC>

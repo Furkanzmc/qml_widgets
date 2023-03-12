@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
   QQmlApplicationEngine engine;
 
-  const QUrl url{"/Users/furkanzmc/Development/github/qml_widgets/main.qml"};
+  const QUrl url{"/Users/furkanzmc/Development/github/qml_widgets/qml/main.qml"};
 
   qmlRegisterAnonymousType<QLayout>("Qml.Widgets", 1);
   qmlRegisterType<ZWidget>("Qml.Widgets", 1, 0, "Widget");
