@@ -1,6 +1,6 @@
 import Qml.Widgets
-import Qml.Widgets.Window
-import Qml.Widgets.Dialogs
+// import Qml.Widgets.Window
+// import Qml.Widgets.Dialogs
 import QtQml 2.15
 
 MainWindow {

@@ -3,6 +3,7 @@
         <file>qml/main.qml</file>
         <file>qml/WidgetsGallery.qml</file>
         <file>qml/Calculator.qml</file>
+        <file>qml/DialogsGallery.qml</file>
         <file>qml/LayoutsGallery.qml</file>
     </qresource>
 </RCC>

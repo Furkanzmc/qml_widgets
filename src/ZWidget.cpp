@@ -1,61 +1,61 @@
 #include "ZWidget.h"
 
-#include <QQmlListProperty>
 #include <QLayout>
+#include <QQmlListProperty>
 
-ZWidget::ZWidget(QWidget* parent)
-  : QWidget{ parent }
+ZWidget::ZWidget(QWidget *parent)
+    : QWidget{parent}
 {
 }
 
 QQmlListProperty<QObject> ZWidget::data()
 {
     return QQmlListProperty<QObject>(
-      this,
-      nullptr,
-      // Append
-      [](QQmlListProperty<QObject>* prop, QObject* object) -> void {
-          assert(prop);
-          assert(object);
-          auto* parent = static_cast<ZWidget*>(prop->object);
-          assert(parent);
-          auto* layout{ qobject_cast<QLayout*>(object) };
-          if (layout && !parent->layout()) {
-              parent->setLayout(layout);
-          }
-          else if (!object->parent()) {
-              object->setParent(parent);
-          }
-      },
-      // Count
-      [](QQmlListProperty<QObject>* prop) -> qsizetype {
-          assert(prop);
-          auto* parent = static_cast<ZWidget*>(prop->object);
-          assert(parent);
-          return parent->layout() ? 1 : 0;
-      },
-      // At
-      [](QQmlListProperty<QObject>* prop, qsizetype i) -> QObject* {
-          assert(prop);
-          auto* parent = static_cast<ZWidget*>(prop->object);
-          assert(parent);
-          if (!parent->layout()) {
-              return nullptr;
-          }
+        this, nullptr,
+        // Append
+        [](QQmlListProperty<QObject> *prop, QObject *object) -> void {
+            assert(prop);
+            assert(object);
+            auto *parent = static_cast<ZWidget *>(prop->object);
+            assert(parent);
+            auto *layout{qobject_cast<QLayout *>(object)};
+            if (layout && !parent->layout()) {
+                parent->setLayout(layout);
+            } else if (!object->parent()) {
+                object->setParent(parent);
+            }
+        },
+        // Count
+        [](QQmlListProperty<QObject> *prop) -> qsizetype {
+            assert(prop);
+            auto *parent = static_cast<ZWidget *>(prop->object);
+            assert(parent);
+            return parent->layout() ? 1 : 0;
+        },
+        // At
+        [](QQmlListProperty<QObject> *prop, qsizetype i) -> QObject * {
+            assert(prop);
+            auto *parent = static_cast<ZWidget *>(prop->object);
+            assert(parent);
+            if (!parent->layout()) {
+                return nullptr;
+            }
 
-          return parent->layout()->itemAt(i)->widget();
-      },
-      // Clear
-      [](QQmlListProperty<QObject>* prop) -> void { assert(prop); });
+            return parent->layout()->itemAt(i)->widget();
+        },
+        // Clear
+        [](QQmlListProperty<QObject> *prop) -> void {
+            assert(prop);
+        });
 }
 
-void ZWidget::setParentInternal(QObject* w)
+void ZWidget::setParentInternal(QObject *w)
 {
     if (parent() == w) {
         return;
     }
 
-    setParent(qobject_cast<QWidget*>(w));
+    setParent(qobject_cast<QWidget *>(w));
     emit parentChanged(QPrivateSignal{});
 }
 
@@ -66,7 +66,7 @@ int ZWidget::width() const
 
 void ZWidget::setWidth(int value)
 {
-    auto sz{ size() };
+    auto sz{size()};
     if (sz.width() == value) {
         return;
     }
@@ -83,7 +83,7 @@ int ZWidget::height() const
 
 void ZWidget::setHeight(int value)
 {
-    auto sz{ size() };
+    auto sz{size()};
     if (sz.height() == value) {
         return;
     }

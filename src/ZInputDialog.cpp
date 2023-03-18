@@ -1,19 +1,13 @@
 #include "ZInputDialog.h"
 
-ZInputDialog::ZInputDialog(QWidget* parent)
-  : QInputDialog{ parent }
+ZInputDialog::ZInputDialog(QWidget *parent)
+    : QInputDialog{parent}
 {
-    connect(this,
-            &ZInputDialog::textValueChanged,
-            this,
+    connect(this, &ZInputDialog::textValueChanged, this,
             &ZInputDialog::textValueChangedInternal);
-    connect(this,
-            &ZInputDialog::intValueChanged,
-            this,
+    connect(this, &ZInputDialog::intValueChanged, this,
             &ZInputDialog::intValueChangedInternal);
-    connect(this,
-            &ZInputDialog::doubleValueChanged,
-            this,
+    connect(this, &ZInputDialog::doubleValueChanged, this,
             &ZInputDialog::doubleValueChangedInternal);
 }
 

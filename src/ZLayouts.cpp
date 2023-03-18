@@ -4,10 +4,9 @@
 #include <QWidget>
 
 namespace {
-template<class Layout>
-void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
+template <class Layout> void dataAppend(QQmlListProperty<QObject> *prop, QObject *object)
 {
-    auto* layout{ static_cast<Layout*>(prop->object) };
+    auto *layout{static_cast<Layout *>(prop->object)};
     assert(layout);
     if (layout->count() == 0) {
         // NOTE: If there's a parent and the parent was not passed in in the
@@ -16,236 +15,188 @@ void dataAppend(QQmlListProperty<QObject>* prop, QObject* object)
         layout->setParent(nullptr);
     }
 
-    auto* widget{ qobject_cast<QWidget*>(object) };
-    auto* layoutItem{ widget ? nullptr : qobject_cast<ZSpacerItem*>(object) };
+    auto *widget{qobject_cast<QWidget *>(object)};
+    auto *layoutItem{widget ? nullptr : qobject_cast<ZSpacerItem *>(object)};
     if (widget) {
         if constexpr (std::is_same_v<Layout, ZFormLayout>) {
-            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+            auto layoutAtt = qobject_cast<ZLayoutAttached *>(
+                qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             if (layoutAtt) {
                 layout->addRow(layoutAtt->label(), widget);
-            }
-            else {
+            } else {
                 layout->addRow(widget);
             }
-        }
-        else if constexpr (std::is_same_v<Layout, ZGridLayout>) {
-            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+        } else if constexpr (std::is_same_v<Layout, ZGridLayout>) {
+            auto layoutAtt = qobject_cast<ZLayoutAttached *>(
+                qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             assert(layoutAtt);
-            layout->addWidget(widget,
-                              layoutAtt->row(),
-                              layoutAtt->column(),
-                              layoutAtt->rowSpan(),
-                              layoutAtt->columnSpan(),
+            layout->addWidget(widget, layoutAtt->row(), layoutAtt->column(),
+                              layoutAtt->rowSpan(), layoutAtt->columnSpan(),
                               layoutAtt->alignment());
-        }
-        else if constexpr (std::is_same_v<Layout, ZToolBox>) {
-            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
+        } else if constexpr (std::is_same_v<Layout, ZToolBox>) {
+            auto layoutAtt = qobject_cast<ZLayoutAttached *>(
+                qmlAttachedPropertiesObject<ZLayoutAttached>(widget, false));
             assert(layoutAtt);
             layout->addItem(widget, layoutAtt->label());
-        }
-        else {
+        } else {
             layout->addWidget(widget);
         }
-    }
-    else if (layoutItem) {
+    } else if (layoutItem) {
         if constexpr (std::is_same_v<Layout, ZGridLayout>) {
-            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(layoutItem, false));
+            auto layoutAtt = qobject_cast<ZLayoutAttached *>(
+                qmlAttachedPropertiesObject<ZLayoutAttached>(layoutItem, false));
             assert(layoutAtt);
-            layout->addItem(layoutItem,
-                            layoutAtt->row(),
-                            layoutAtt->column(),
-                            layoutAtt->rowSpan(),
-                            layoutAtt->columnSpan(),
+            layout->addItem(layoutItem, layoutAtt->row(), layoutAtt->column(),
+                            layoutAtt->rowSpan(), layoutAtt->columnSpan(),
                             layoutAtt->alignment());
-        }
-        else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
+        } else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
             layout->addItem(layoutItem);
-        }
-        else if constexpr (std::is_same_v<Layout, ZStackedLayout>) {
+        } else if constexpr (std::is_same_v<Layout, ZStackedLayout>) {
             assert("Cannot add spacer to ZStackedLayout." == 0);
-        }
-        else if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
+        } else if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
             assert("Cannot add spacer to ZStackedWidget." == 0);
+        } else if constexpr (!std::is_same_v<Layout, ZToolBox>) {
+            layout->addSpacerItem(dynamic_cast<QSpacerItem *>(layoutItem));
         }
-        else if constexpr (!std::is_same_v<Layout, ZToolBox>) {
-            layout->addSpacerItem(dynamic_cast<QSpacerItem*>(layoutItem));
-        }
-    }
-    else {
-        auto* childLayout{ qobject_cast<QLayout*>(object) };
+    } else {
+        auto *childLayout{qobject_cast<QLayout *>(object)};
         if constexpr (std::is_same_v<Layout, ZGridLayout>) {
-            auto layoutAtt = qobject_cast<ZLayoutAttached*>(
-              qmlAttachedPropertiesObject<ZLayoutAttached>(childLayout, false));
+            auto layoutAtt = qobject_cast<ZLayoutAttached *>(
+                qmlAttachedPropertiesObject<ZLayoutAttached>(childLayout, false));
             assert(layoutAtt);
-            layout->addLayout(childLayout,
-                              layoutAtt->row(),
-                              layoutAtt->column(),
-                              layoutAtt->rowSpan(),
-                              layoutAtt->columnSpan(),
+            layout->addLayout(childLayout, layoutAtt->row(), layoutAtt->column(),
+                              layoutAtt->rowSpan(), layoutAtt->columnSpan(),
                               layoutAtt->alignment());
-        }
-        else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
+        } else if constexpr (std::is_same_v<Layout, ZFormLayout>) {
             layout->addRow(childLayout);
-        }
-        else if constexpr (!std::is_same_v<Layout, ZStackedLayout> &&
-                           !std::is_same_v<Layout, ZStackedWidget> &&
-                           !std::is_same_v<Layout, ZToolBox>) {
+        } else if constexpr (!std::is_same_v<Layout, ZStackedLayout> &&
+                             !std::is_same_v<Layout, ZStackedWidget> &&
+                             !std::is_same_v<Layout, ZToolBox>) {
             layout->addLayout(childLayout);
-        }
-        else {
+        } else {
             assert(false);
         }
     }
 }
 
-template<class Layout>
-qsizetype dataCount(QQmlListProperty<QObject>* prop)
+template <class Layout> qsizetype dataCount(QQmlListProperty<QObject> *prop)
 {
-    auto* layout{ static_cast<Layout*>(prop->object) };
+    auto *layout{static_cast<Layout *>(prop->object)};
     assert(layout);
     return layout->count();
 }
 
-template<class Layout>
-QObject* dataAt(QQmlListProperty<QObject>* prop, qsizetype i)
+template <class Layout> QObject *dataAt(QQmlListProperty<QObject> *prop, qsizetype i)
 {
-    auto* layout{ static_cast<Layout*>(prop->object) };
+    auto *layout{static_cast<Layout *>(prop->object)};
     assert(layout);
     if constexpr (std::is_same_v<Layout, ZStackedWidget>) {
         return layout->widget(i);
-    }
-    else if constexpr (std::is_same_v<Layout, ZToolBox>) {
+    } else if constexpr (std::is_same_v<Layout, ZToolBox>) {
         return layout->widget(i);
-    }
-    else {
+    } else {
         return layout->itemAt(i)->widget();
     }
 }
 
-template<class Layout>
-void dataClear(QQmlListProperty<QObject>* prop)
+template <class Layout> void dataClear(QQmlListProperty<QObject> *prop)
 {
-    auto* layout{ static_cast<Layout*>(prop->object) };
+    auto *layout{static_cast<Layout *>(prop->object)};
     assert(layout);
     // TODO: Clear...
 }
-}
+} // namespace
 
-ZVBoxLayout::ZVBoxLayout(QWidget* parent)
-  : QVBoxLayout{ parent }
+ZVBoxLayout::ZVBoxLayout(QWidget *parent)
+    : QVBoxLayout{parent}
 {
 }
 
 QQmlListProperty<QObject> ZVBoxLayout::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZVBoxLayout>,
-                                     dataCount<ZVBoxLayout>,
-                                     dataAt<ZVBoxLayout>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZVBoxLayout>,
+                                     dataCount<ZVBoxLayout>, dataAt<ZVBoxLayout>,
                                      dataClear<ZVBoxLayout>);
 }
 
-ZHBoxLayout::ZHBoxLayout(QWidget* parent)
-  : QHBoxLayout{ parent }
+ZHBoxLayout::ZHBoxLayout(QWidget *parent)
+    : QHBoxLayout{parent}
 {
 }
 
 QQmlListProperty<QObject> ZHBoxLayout::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZVBoxLayout>,
-                                     dataCount<ZVBoxLayout>,
-                                     dataAt<ZVBoxLayout>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZVBoxLayout>,
+                                     dataCount<ZVBoxLayout>, dataAt<ZVBoxLayout>,
                                      dataClear<ZVBoxLayout>);
 }
 
-ZFormLayout::ZFormLayout(QWidget* parent)
-  : QFormLayout{ parent }
+ZFormLayout::ZFormLayout(QWidget *parent)
+    : QFormLayout{parent}
 {
 }
 
 QQmlListProperty<QObject> ZFormLayout::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZFormLayout>,
-                                     dataCount<ZFormLayout>,
-                                     dataAt<ZFormLayout>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZFormLayout>,
+                                     dataCount<ZFormLayout>, dataAt<ZFormLayout>,
                                      dataClear<ZFormLayout>);
 }
 
-ZGridLayout::ZGridLayout(QWidget* parent)
-  : QGridLayout{ parent }
+ZGridLayout::ZGridLayout(QWidget *parent)
+    : QGridLayout{parent}
 {
 }
 
 QQmlListProperty<QObject> ZGridLayout::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZGridLayout>,
-                                     dataCount<ZGridLayout>,
-                                     dataAt<ZGridLayout>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZGridLayout>,
+                                     dataCount<ZGridLayout>, dataAt<ZGridLayout>,
                                      dataClear<ZGridLayout>);
 }
 
-ZStackedLayout::ZStackedLayout(QWidget* parent)
-  : QStackedLayout{ parent }
+ZStackedLayout::ZStackedLayout(QWidget *parent)
+    : QStackedLayout{parent}
 {
 }
 
 QQmlListProperty<QObject> ZStackedLayout::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZStackedLayout>,
-                                     dataCount<ZStackedLayout>,
-                                     dataAt<ZStackedLayout>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZStackedLayout>,
+                                     dataCount<ZStackedLayout>, dataAt<ZStackedLayout>,
                                      dataClear<ZStackedLayout>);
 }
 
-ZStackedWidget::ZStackedWidget(QWidget* parent)
-  : QStackedWidget{ parent }
+ZStackedWidget::ZStackedWidget(QWidget *parent)
+    : QStackedWidget{parent}
 {
 }
 
 QQmlListProperty<QObject> ZStackedWidget::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZStackedWidget>,
-                                     dataCount<ZStackedWidget>,
-                                     dataAt<ZStackedWidget>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZStackedWidget>,
+                                     dataCount<ZStackedWidget>, dataAt<ZStackedWidget>,
                                      dataClear<ZStackedWidget>);
 }
 
-ZToolBox::ZToolBox(QWidget* parent)
-  : QToolBox{ parent }
+ZToolBox::ZToolBox(QWidget *parent)
+    : QToolBox{parent}
 {
 }
 
 QQmlListProperty<QObject> ZToolBox::data()
 {
-    return QQmlListProperty<QObject>(this,
-                                     nullptr,
-                                     dataAppend<ZToolBox>,
-                                     dataCount<ZToolBox>,
-                                     dataAt<ZToolBox>,
+    return QQmlListProperty<QObject>(this, nullptr, dataAppend<ZToolBox>,
+                                     dataCount<ZToolBox>, dataAt<ZToolBox>,
                                      dataClear<ZToolBox>);
 }
 
-ZLayoutAttached::ZLayoutAttached(QObject* parent)
-  : QObject{ parent }
+ZLayoutAttached::ZLayoutAttached(QObject *parent)
+    : QObject{parent}
 {
 }
 
-ZLayoutAttached* ZLayoutAttached::qmlAttachedProperties(QObject* object)
+ZLayoutAttached *ZLayoutAttached::qmlAttachedProperties(QObject *object)
 {
     return new ZLayoutAttached(object);
 }
@@ -422,7 +373,7 @@ QString ZLayoutAttached::label() const
     return m_label;
 }
 
-void ZLayoutAttached::setLabel(const QString& lb)
+void ZLayoutAttached::setLabel(const QString &lb)
 {
     if (m_label == lb) {
         return;
@@ -432,9 +383,9 @@ void ZLayoutAttached::setLabel(const QString& lb)
     emit labelChanged(QPrivateSignal{});
 }
 
-ZSpacerItem::ZSpacerItem(QObject* parent)
-  : QObject{ parent }
-  , QSpacerItem{ 0, 0 }
+ZSpacerItem::ZSpacerItem(QObject *parent)
+    : QObject{parent}
+    , QSpacerItem{0, 0}
 {
 }
 
@@ -449,9 +400,8 @@ void ZSpacerItem::setWidth(int value)
         return;
     }
 
-    const auto policy{ sizePolicy() };
-    changeSize(
-      value, height(), policy.horizontalPolicy(), policy.verticalPolicy());
+    const auto policy{sizePolicy()};
+    changeSize(value, height(), policy.horizontalPolicy(), policy.verticalPolicy());
     emit widthChanged(QPrivateSignal{});
 }
 
@@ -466,9 +416,8 @@ void ZSpacerItem::setHeight(int value)
         return;
     }
 
-    const auto policy{ sizePolicy() };
-    changeSize(
-      width(), value, policy.horizontalPolicy(), policy.verticalPolicy());
+    const auto policy{sizePolicy()};
+    changeSize(width(), value, policy.horizontalPolicy(), policy.verticalPolicy());
     emit heightChanged(QPrivateSignal{});
 }
 
@@ -483,9 +432,9 @@ void ZSpacerItem::setHorizontalSizePolicy(QSizePolicy::Policy policy)
         return;
     }
 
-    const auto oldExpDirection{ expandingDirections() };
-    const auto oldMinSize{ minimumSize() };
-    const auto oldMaxSize{ maximumSize() };
+    const auto oldExpDirection{expandingDirections()};
+    const auto oldMinSize{minimumSize()};
+    const auto oldMaxSize{maximumSize()};
 
     changeSize(width(), height(), policy, sizePolicy().verticalPolicy());
     emit horizontalSizePolicyChanged(QPrivateSignal{});
@@ -513,9 +462,9 @@ void ZSpacerItem::setVerticalSizePolicy(QSizePolicy::Policy policy)
         return;
     }
 
-    const auto oldExpDirection{ expandingDirections() };
-    const auto oldMinSize{ minimumSize() };
-    const auto oldMaxSize{ maximumSize() };
+    const auto oldExpDirection{expandingDirections()};
+    const auto oldMinSize{minimumSize()};
+    const auto oldMaxSize{maximumSize()};
 
     changeSize(width(), height(), sizePolicy().horizontalPolicy(), policy);
     emit verticalSizePolicyChanged(QPrivateSignal{});
@@ -533,7 +482,7 @@ void ZSpacerItem::setVerticalSizePolicy(QSizePolicy::Policy policy)
     }
 }
 
-void ZSpacerItem::setGeometryInternal(const QRect& value)
+void ZSpacerItem::setGeometryInternal(const QRect &value)
 {
     if (geometry() == value) {
         return;

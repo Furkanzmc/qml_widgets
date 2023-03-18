@@ -1,3 +1,8 @@
+# QML Widget
+
+This is a toy project to create `QWidget` application using QML. The hope is to eventually support
+all the `QWidget` API to make it usable for a real application.
+
 ## Notes
 
 - `Component` type is not available. So can't do things like `Component.onCompleted` or
@@ -8,11 +13,49 @@
 
 - [ ] React to to changes to Layout attached type.
 - [ ] Support QSS with QML syntax.
-  > Need to figure out how to use the custom QML parser...
   > [Reference](https://doc.qt.io/qt-6/stylesheet-reference.html)
 
 ## Supported Types
 
+- [x] QPalette
+- [x] QCheckBox
+- [x] QColorDialog
+- [x] QComboBox
+- [x] QCommandLinkButton
+- [x] QDateEdit
+- [x] QDateTimeEdit
+- [x] QDial
+- [x] QDoubleSpinBox
+- [x] QErrorMessage
+- [x] QFileDialog
+- [x] QFontComboBox
+- [x] QFontDialog
+- [x] QFormLayout
+- [x] QGridLayout
+- [x] QGroupBox
+- [x] QHBoxLayout
+- [x] QKeySequenceEdit
+- [x] QLabel
+- [x] QLineEdit
+- [x] QMenu
+- [x] QMenuBar
+- [x] QMessageBox
+- [x] QPlainTextEdit
+- [x] QProgressBar
+- [x] QPushButton
+- [x] QRadioButton
+- [x] QSizePolicy
+- [x] QSlider
+- [x] QSpacerItem
+- [x] QSpinBox
+- [x] QStackedLayout
+- [x] QStackedWidget
+- [x] QTextEdit
+- [x] QToolBox
+- [x] QToolButton
+- [x] QVBoxLayout
+- [x] QWidget
+- [x] QTimeEdit
 - [ ] QAbstractButton
 - [ ] QAbstractGraphicsShapeItem
 - [ ] QAbstractItemDelegate
@@ -92,7 +135,6 @@
 - [ ] QMainWindow
 - [ ] QMdiArea
 - [ ] QMdiSubWindow
-- [x] QPalette
 - [ ] QPanGesture
 - [ ] QPinchGesture
 - [ ] QPlainTextDocumentLayout
@@ -154,7 +196,6 @@
 - [ ] QTapGesture
 - [ ] QTextBrowser
 - [ ] QTileRules
-- [ ] QTimeEdit
 - [ ] QToolBar
 - [ ] QToolTip
 - [ ] QTreeView
@@ -167,41 +208,3 @@
 - [ ] QWidgetItem
 - [ ] QWizard
 - [ ] QWizardPage
-- [x] QCheckBox
-- [x] QColorDialog
-- [x] QComboBox
-- [x] QCommandLinkButton
-- [x] QDateEdit
-- [x] QDateTimeEdit
-- [x] QDial
-- [x] QDoubleSpinBox
-- [x] QErrorMessage
-- [x] QFileDialog
-- [x] QFontComboBox
-- [x] QFontDialog
-- [x] QFormLayout
-- [x] QGridLayout
-- [x] QGroupBox
-- [x] QHBoxLayout
-- [x] QKeySequenceEdit
-- [x] QLabel
-- [x] QLineEdit
-- [x] QMenu
-- [x] QMenuBar
-- [x] QMessageBox
-- [x] QPlainTextEdit
-- [x] QProgressBar
-- [x] QPushButton
-- [x] QRadioButton
-- [x] QSizePolicy
-- [x] QSlider
-- [x] QSpacerItem
-- [x] QSpinBox
-- [x] QStackedLayout
-- [x] QStackedWidget
-- [x] QTextEdit
-- [x] QToolBox
-- [x] QToolButton
-- [x] QVBoxLayout
-- [x] QWidget
-> Exposed an `enum` to QML.

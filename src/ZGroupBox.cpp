@@ -1,29 +1,42 @@
 #include "ZGroupBox.h"
 
-#include <QQmlListProperty>
 #include <QLayout>
+#include <QQmlListProperty>
 
-ZGroupBox::ZGroupBox(QWidget* parent)
-  : QGroupBox{ parent }
+ZGroupBox::ZGroupBox(QWidget *parent)
+    : QGroupBox{parent}
 {
 }
 
-void ZGroupBox::setLayoutInternal(QLayout* ly)
+void ZGroupBox::setLayoutInternal(QObject *wgt)
 {
-    if (layout() == ly) {
+    if (layout() == wgt) {
         return;
     }
 
-    setLayout(ly);
+    auto *lyt = [wgt]() -> QLayout * {
+        if (auto *lyt = qobject_cast<QLayout *>(wgt)) {
+            return lyt;
+        }
+
+        if (auto *frame = qobject_cast<QFrame *>(wgt)) {
+            return frame->layout();
+        }
+
+        return nullptr;
+    }();
+
+    assert(lyt);
+    setLayout(lyt);
     emit layoutChanged(QPrivateSignal{});
 }
 
-void ZGroupBox::setParentInternal(QObject* w)
+void ZGroupBox::setParentInternal(QObject *w)
 {
     if (parent() == w) {
         return;
     }
 
-    setParent(qobject_cast<QWidget*>(w));
+    setParent(qobject_cast<QWidget *>(w));
     emit parentChanged(QPrivateSignal{});
 }

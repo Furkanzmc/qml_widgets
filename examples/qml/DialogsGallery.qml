@@ -1,5 +1,4 @@
 import Qml.Widgets
-import Qml.Widgets.Dialogs
 
 Widget {
     id: root

@@ -1,19 +1,20 @@
 #ifndef Z_LAYOUTS_H
 #define Z_LAYOUTS_H
 
-#include <QVBoxLayout>
-#include <QHBoxLayout>
 #include <QFormLayout>
 #include <QGridLayout>
+#include <QHBoxLayout>
+#include <QSpacerItem>
 #include <QStackedLayout>
 #include <QStackedWidget>
-#include <QSpacerItem>
 #include <QToolBox>
+#include <QVBoxLayout>
 
 #include <QWidget>
 #include <qqml.h>
 
-class ZVBoxLayout : public QVBoxLayout {
+class ZVBoxLayout : public QVBoxLayout
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
@@ -21,15 +22,16 @@ class ZVBoxLayout : public QVBoxLayout {
     QML_NAMED_ELEMENT(VBoxLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZVBoxLayout(QWidget* parent = nullptr);
+    explicit ZVBoxLayout(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZHBoxLayout : public QHBoxLayout {
+class ZHBoxLayout : public QHBoxLayout
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
@@ -37,15 +39,16 @@ class ZHBoxLayout : public QHBoxLayout {
     QML_NAMED_ELEMENT(HBoxLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZHBoxLayout(QWidget* parent = nullptr);
+    explicit ZHBoxLayout(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZFormLayout : public QFormLayout {
+class ZFormLayout : public QFormLayout
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
@@ -53,15 +56,16 @@ class ZFormLayout : public QFormLayout {
     QML_NAMED_ELEMENT(FormLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZFormLayout(QWidget* parent = nullptr);
+    explicit ZFormLayout(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZGridLayout : public QGridLayout {
+class ZGridLayout : public QGridLayout
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
@@ -69,15 +73,16 @@ class ZGridLayout : public QGridLayout {
     QML_NAMED_ELEMENT(GridLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZGridLayout(QWidget* parent = nullptr);
+    explicit ZGridLayout(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZStackedLayout : public QStackedLayout {
+class ZStackedLayout : public QStackedLayout
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
@@ -85,47 +90,50 @@ class ZStackedLayout : public QStackedLayout {
     QML_NAMED_ELEMENT(StackedLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZStackedLayout(QWidget* parent = nullptr);
+    explicit ZStackedLayout(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZStackedWidget : public QStackedWidget {
+class ZStackedWidget : public QStackedWidget
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(StackedLayout)
+    QML_NAMED_ELEMENT(StackLayout)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZStackedWidget(QWidget* parent = nullptr);
+    explicit ZStackedWidget(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZToolBox : public QToolBox {
+class ZToolBox : public QToolBox
+{
     Q_OBJECT
 
     Q_CLASSINFO("DefaultProperty", "data")
     Q_CLASSINFO("ParentProperty", "parent")
-    QML_NAMED_ELEMENT(StackedLayout)
+    QML_NAMED_ELEMENT(ToolBox)
 
     Q_PROPERTY(QQmlListProperty<QObject> data READ data DESIGNABLE false)
-    Q_PROPERTY(QWidget* parent READ parentWidget DESIGNABLE false)
+    Q_PROPERTY(QWidget *parent READ parentWidget DESIGNABLE false)
 
 public:
-    explicit ZToolBox(QWidget* parent = nullptr);
+    explicit ZToolBox(QWidget *parent = nullptr);
 
     QQmlListProperty<QObject> data();
 };
 
-class ZLayoutAttached : public QObject {
+class ZLayoutAttached : public QObject
+{
     Q_OBJECT
 
     QML_NAMED_ELEMENT(Layout)
@@ -134,23 +142,22 @@ class ZLayoutAttached : public QObject {
     Q_PROPERTY(int row READ row WRITE setRow NOTIFY rowChanged)
     Q_PROPERTY(int column READ column WRITE setColumn NOTIFY columnChanged)
     Q_PROPERTY(int rowSpan READ rowSpan WRITE setRowSpan NOTIFY rowSpanChanged)
-    Q_PROPERTY(int columnSpan READ columnSpan WRITE setColumnSpan NOTIFY
-                 columnSpanChanged)
-
-    Q_PROPERTY(Qt::Alignment alignment READ alignment WRITE setAlignment NOTIFY
-                 alignmentChanged)
+    Q_PROPERTY(
+        int columnSpan READ columnSpan WRITE setColumnSpan NOTIFY columnSpanChanged)
 
     Q_PROPERTY(
-      qreal margins READ margins WRITE setMargins NOTIFY marginsChanged)
+        Qt::Alignment alignment READ alignment WRITE setAlignment NOTIFY alignmentChanged)
 
-    Q_PROPERTY(qreal leftMargin READ leftMargin WRITE setLeftMargin RESET
-                 resetLeftMargin NOTIFY leftMarginChanged)
-    Q_PROPERTY(qreal topMargin READ topMargin WRITE setTopMargin RESET
-                 resetTopMargin NOTIFY topMarginChanged)
+    Q_PROPERTY(qreal margins READ margins WRITE setMargins NOTIFY marginsChanged)
+
+    Q_PROPERTY(qreal leftMargin READ leftMargin WRITE setLeftMargin RESET resetLeftMargin
+                   NOTIFY leftMarginChanged)
+    Q_PROPERTY(qreal topMargin READ topMargin WRITE setTopMargin RESET resetTopMargin
+                   NOTIFY topMarginChanged)
     Q_PROPERTY(qreal rightMargin READ rightMargin WRITE setRightMargin RESET
-                 resetRightMargin NOTIFY rightMarginChanged)
+                   resetRightMargin NOTIFY rightMarginChanged)
     Q_PROPERTY(qreal bottomMargin READ bottomMargin WRITE setBottomMargin RESET
-                 resetBottomMargin NOTIFY bottomMarginChanged)
+                   resetBottomMargin NOTIFY bottomMarginChanged)
 
     // Only used with ZFormLayout
     Q_PROPERTY(QString label READ label WRITE setLabel NOTIFY labelChanged)
@@ -159,9 +166,9 @@ class ZLayoutAttached : public QObject {
     Q_PROPERTY(QString title READ label WRITE setLabel NOTIFY labelChanged)
 
 public:
-    ZLayoutAttached(QObject* parent);
+    ZLayoutAttached(QObject *parent);
 
-    static ZLayoutAttached* qmlAttachedProperties(QObject* object);
+    static ZLayoutAttached *qmlAttachedProperties(QObject *object);
 
     int row() const;
     void setRow(int value);
@@ -198,7 +205,7 @@ public:
     void resetBottomMargin();
 
     QString label() const;
-    void setLabel(const QString& lb);
+    void setLabel(const QString &lb);
 
 signals:
     void rowChanged(QPrivateSignal);
@@ -216,8 +223,8 @@ signals:
 private:
     int m_row{};
     int m_column{};
-    int m_rowSpan{ 1 };
-    int m_columnSpan{ 1 };
+    int m_rowSpan{1};
+    int m_columnSpan{1};
     Qt::Alignment m_alignment{};
     qreal m_margins{};
     qreal m_leftMargin{};
@@ -227,26 +234,25 @@ private:
     QString m_label{};
 };
 
-class ZSpacerItem
-  : public QObject
-  , public QSpacerItem {
+class ZSpacerItem : public QObject, public QSpacerItem
+{
 
     Q_OBJECT
+    QML_NAMED_ELEMENT(Spacer)
 
     Q_PROPERTY(int width READ width WRITE setWidth NOTIFY widthChanged)
     Q_PROPERTY(int height READ height WRITE setHeight NOTIFY heightChanged)
 
+    Q_PROPERTY(QSizePolicy::Policy horizontalSizePolicy READ horizontalSizePolicy WRITE
+                   setHorizontalSizePolicy NOTIFY horizontalSizePolicyChanged)
+    Q_PROPERTY(QSizePolicy::Policy verticalSizePolicy READ verticalSizePolicy WRITE
+                   setVerticalSizePolicy NOTIFY verticalSizePolicyChanged)
+
     Q_PROPERTY(
-      QSizePolicy::Policy horizontalSizePolicy READ horizontalSizePolicy WRITE
-        setHorizontalSizePolicy NOTIFY horizontalSizePolicyChanged)
-    Q_PROPERTY(QSizePolicy::Policy verticalSizePolicy READ verticalSizePolicy
-                 WRITE setVerticalSizePolicy NOTIFY verticalSizePolicyChanged)
+        QRect geometry READ geometry WRITE setGeometryInternal NOTIFY geometryChanged)
 
-    Q_PROPERTY(QRect geometry READ geometry WRITE setGeometryInternal NOTIFY
-                 geometryChanged)
-
-    Q_PROPERTY(Qt::Orientations expandingDirections READ expandingDirections
-                 NOTIFY expandingDirectionsChanged)
+    Q_PROPERTY(Qt::Orientations expandingDirections READ expandingDirections NOTIFY
+                   expandingDirectionsChanged)
 
     Q_PROPERTY(QSize minimumSize READ minimumSize NOTIFY minimumSizeChanged)
     Q_PROPERTY(QSize maximumSize READ maximumSize NOTIFY maximumSizeChanged)
@@ -254,7 +260,7 @@ class ZSpacerItem
     Q_PROPERTY(bool empty READ isEmpty CONSTANT)
 
 public:
-    explicit ZSpacerItem(QObject* parent = nullptr);
+    explicit ZSpacerItem(QObject *parent = nullptr);
 
     int width() const;
     void setWidth(int value);
@@ -268,7 +274,7 @@ public:
     QSizePolicy::Policy verticalSizePolicy() const;
     void setVerticalSizePolicy(QSizePolicy::Policy policy);
 
-    void setGeometryInternal(const QRect& value);
+    void setGeometryInternal(const QRect &value);
 
 signals:
     void widthChanged(QPrivateSignal);

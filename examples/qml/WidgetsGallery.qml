@@ -144,6 +144,10 @@ Widget {
                 KeySequenceEdit {
                     Layout.label: "Shortcut"
                 }
+
+                TimeEdit {
+                    Layout.label: "Time"
+                }
             }
         }
 
